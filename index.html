@@ -1,0 +1,498 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>YKS YOP Çalışma Paneli</title>
+<style>
+:root{
+  --bg:#f5f7fb; --card:#ffffff; --text:#18212f; --muted:#6b7280;
+  --line:#e5e7eb; --primary:#2563eb; --primary2:#eff6ff;
+  --good:#15803d; --goodbg:#f0fdf4; --yama:#b91c1c; --yamabg:#fef2f2;
+  --onar:#b45309; --onarbg:#fffbeb; --pek:#6d28d9; --pekbg:#f5f3ff;
+  --shadow:0 8px 30px rgba(15,23,42,.06);
+}
+*{box-sizing:border-box}
+body{margin:0;font-family:Inter,ui-sans-serif,system-ui,-apple-system,Segoe UI,Roboto,Arial;background:var(--bg);color:var(--text)}
+header{background:linear-gradient(135deg,#111827,#1d4ed8);color:#fff;padding:28px 24px}
+.header-inner{max-width:1300px;margin:auto;display:flex;justify-content:space-between;gap:20px;align-items:center}
+h1{margin:0;font-size:30px}.subtitle{opacity:.85;margin-top:6px}
+.badge{background:rgba(255,255,255,.14);border:1px solid rgba(255,255,255,.24);padding:10px 14px;border-radius:14px;font-weight:700}
+main{max-width:1300px;margin:22px auto;padding:0 18px 50px}
+.tabs{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:18px}
+.tab{border:0;background:#fff;padding:11px 16px;border-radius:12px;cursor:pointer;font-weight:700;color:#475569;box-shadow:var(--shadow)}
+.tab.active{background:#111827;color:#fff}
+.section{display:none}.section.active{display:block}
+.grid{display:grid;grid-template-columns:repeat(12,1fr);gap:16px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:18px;box-shadow:var(--shadow)}
+.span-4{grid-column:span 4}.span-5{grid-column:span 5}.span-6{grid-column:span 6}.span-7{grid-column:span 7}.span-8{grid-column:span 8}.span-12{grid-column:span 12}
+.card h2,.card h3{margin:0 0 12px}.muted{color:var(--muted);font-size:13px}
+label{display:block;font-size:12px;font-weight:800;color:#475569;margin:0 0 6px}
+input,select{width:100%;padding:11px 12px;border:1px solid #d7dce3;border-radius:11px;background:#fff;font-size:14px;color:#111827}
+.form-grid{display:grid;grid-template-columns:repeat(12,1fr);gap:12px}
+.f2{grid-column:span 2}.f3{grid-column:span 3}.f4{grid-column:span 4}.f6{grid-column:span 6}.f12{grid-column:span 12}
+.conf-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-top:14px}
+.conf{border-radius:16px;padding:14px;border:1px solid var(--line)}
+.conf h4{margin:0 0 10px}.pair{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.btn{border:0;padding:12px 16px;border-radius:12px;font-weight:800;cursor:pointer}
+.btn-primary{background:#111827;color:#fff}.btn-secondary{background:#eef2f7;color:#1f2937}.btn-danger{background:#fff1f2;color:#be123c}
+.actions{display:flex;gap:10px;flex-wrap:wrap;margin-top:14px}
+.alert{padding:12px 14px;border-radius:12px;font-size:13px;margin-top:12px;display:none}
+.alert.show{display:block}.alert.error{background:#fff1f2;color:#9f1239}.alert.ok{background:#f0fdf4;color:#166534}
+.kpis{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}
+.kpi{padding:16px;border-radius:16px;background:#fff;border:1px solid var(--line)}
+.kpi .v{font-size:28px;font-weight:900;margin-top:4px}.kpi small{color:#64748b;font-weight:700}
+.kpi.good{background:var(--goodbg)}.kpi.yama{background:var(--yamabg)}.kpi.onar{background:var(--onarbg)}.kpi.pek{background:var(--pekbg)}
+.barrow{display:grid;grid-template-columns:110px 1fr 72px;gap:10px;align-items:center;margin:12px 0}
+.bar{height:14px;background:#eef2f7;border-radius:99px;overflow:hidden}.fill{height:100%;background:#334155;border-radius:99px}
+.fill.good{background:#16a34a}.fill.yama{background:#dc2626}.fill.onar{background:#d97706}.fill.pek{background:#7c3aed}
+.legend{display:flex;gap:10px;flex-wrap:wrap}.pill{padding:7px 10px;border-radius:999px;font-size:12px;font-weight:800}
+.pill.good{background:var(--goodbg);color:var(--good)}.pill.yama{background:var(--yamabg);color:var(--yama)}.pill.onar{background:var(--onarbg);color:var(--onar)}.pill.pek{background:var(--pekbg);color:var(--pek)}
+table{width:100%;border-collapse:collapse;font-size:13px}th,td{padding:10px;border-bottom:1px solid var(--line);text-align:left;vertical-align:top}th{font-size:11px;text-transform:uppercase;color:#64748b}
+.scroll{overflow:auto;max-height:480px}.risk-high{font-weight:900;color:#b91c1c}.risk-med{font-weight:900;color:#b45309}.risk-low{font-weight:900;color:#15803d}
+.rec{padding:13px;border-radius:13px;margin:9px 0;border-left:5px solid #cbd5e1;background:#f8fafc}.rec.yama{border-color:#dc2626;background:var(--yamabg)}.rec.onar{border-color:#d97706;background:var(--onarbg)}.rec.pek{border-color:#7c3aed;background:var(--pekbg)}
+.topic-list{display:grid;grid-template-columns:repeat(2,1fr);gap:8px}.topic-item{display:flex;justify-content:space-between;gap:12px;padding:10px 12px;border:1px solid var(--line);border-radius:12px;background:#fff}.topic-name{font-weight:700}.status{font-size:11px;padding:5px 8px;border-radius:999px;background:#eef2f7;white-space:nowrap}
+.empty{padding:28px;text-align:center;color:#64748b}
+.footer-note{margin-top:12px;color:#64748b;font-size:12px}
+.mode-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin:15px 0}
+.mode-btn{border:1px solid var(--line);background:#fff;padding:13px;border-radius:13px;text-align:left;font-weight:800;cursor:pointer}
+.mode-btn.active{border-color:var(--primary);background:var(--primary2);color:#1d4ed8}
+.mode-btn small{display:block;color:var(--muted);font-weight:500;margin-top:4px}
+.hidden{display:none!important}.meter{height:18px;background:#eef2f7;border-radius:99px;overflow:hidden}.meter-fill{height:100%;transition:.2s}
+.self-level{padding:15px;border-radius:14px;margin-top:12px}.self-level strong{font-size:28px;display:block}
+.self-level.red{background:var(--yamabg);color:var(--yama)}.self-level.orange{background:var(--onarbg);color:var(--onar)}.self-level.green{background:var(--goodbg);color:var(--good)}
+.save-note{font-size:12px;color:#bbf7d0;margin-top:7px}
+.branch-panels{display:grid;grid-template-columns:repeat(2,1fr);gap:12px}.branch-panel{border:1px solid var(--line);border-radius:14px;padding:14px;background:#fff}.branch-panel h4{margin-bottom:12px}
+.teacher-group{margin-bottom:18px}.teacher-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}.teacher-card{display:flex;align-items:center;gap:12px;padding:13px;border:1px solid var(--line);border-radius:15px;background:#fff;color:var(--text);text-decoration:none;transition:.18s;min-height:88px}.teacher-card:hover{transform:translateY(-2px);border-color:#f87171;box-shadow:0 10px 24px rgba(15,23,42,.09)}.teacher-avatar{position:relative;flex:0 0 58px;width:58px;height:58px;border-radius:50%;overflow:hidden;background:linear-gradient(135deg,#ef4444,#991b1b);display:grid;place-items:center;color:#fff;font-weight:900;font-size:18px}.teacher-avatar img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;background:#fff}.teacher-name{font-weight:850;line-height:1.25}.youtube-label{font-size:11px;color:#dc2626;font-weight:800;margin-top:5px}.youtube-label:before{content:"▶ ";font-size:10px}
+.self-topic-list{display:grid;gap:11px;margin-top:16px}.self-topic-row{border:1px solid var(--line);border-radius:15px;padding:14px;background:#fff}.self-topic-head{display:grid;grid-template-columns:minmax(180px,1fr) minmax(220px,1.4fr) 58px;gap:14px;align-items:center}.self-topic-name{font-weight:800}.self-topic-pct{font-size:18px;font-weight:900;text-align:right}.self-topic-row.red{border-left:5px solid var(--yama)}.self-topic-row.orange{border-left:5px solid #d97706}.self-topic-row.green{border-left:5px solid #16a34a}.self-topic-note{margin-top:10px}.self-topic-note input{background:#f8fafc}
+.dashboard-filter{display:flex;justify-content:space-between;align-items:end;gap:14px;margin-bottom:14px}.dashboard-filter select{width:230px}.chart-scroll{overflow-x:auto;padding:4px 0 2px}.line-legend{display:flex;gap:14px;flex-wrap:wrap;margin:10px 0 0}.line-key{display:inline-flex;align-items:center;gap:6px;font-size:12px;font-weight:800;color:#475569}.line-dot{width:10px;height:10px;border-radius:50%}.chart-empty{height:190px;display:grid;place-items:center;color:var(--muted)}
+@media(max-width:900px){
+ .span-4,.span-5,.span-6,.span-7,.span-8,.span-12{grid-column:span 12}
+ .conf-grid,.kpis{grid-template-columns:1fr 1fr}
+ .f2,.f3,.f4,.f6{grid-column:span 12}
+ .topic-list{grid-template-columns:1fr}
+ .header-inner{align-items:flex-start;flex-direction:column}
+ .branch-panels{grid-template-columns:1fr}
+ .teacher-grid{grid-template-columns:repeat(2,1fr)}
+ .self-topic-head{grid-template-columns:1fr}.self-topic-pct{text-align:left}
+ .dashboard-filter{align-items:stretch;flex-direction:column}.dashboard-filter select{width:100%}
+}
+@media(max-width:520px){.conf-grid,.kpis,.teacher-grid{grid-template-columns:1fr}.barrow{grid-template-columns:90px 1fr 55px}}
+</style>
+</head>
+<body>
+<header>
+  <div class="header-inner">
+    <div>
+      <h1>YKS YOP Çalışma Paneli</h1>
+      <div class="subtitle">Yama • Onar • Pekiştir — sadece doğru/yanlış değil, ne kadar emin olduğun da ölçülür.</div>
+      <div class="save-note">● Kayıtlar, yarım kalan form ve açık sekme otomatik saklanır</div>
+    </div>
+    <div class="badge">TYT + AYT | Matematik • Geometri • Fizik • Kimya • Biyoloji</div>
+  </div>
+</header>
+
+<main>
+  <div class="tabs">
+    <button class="tab active" data-tab="self">Kendimi Değerlendir</button>
+    <button class="tab" data-tab="entry">Çalışma Kaydı</button>
+    <button class="tab" data-tab="dashboard">Analiz & Grafikler</button>
+    <button class="tab" data-tab="teachers">Hocalarım</button>
+    <button class="tab" data-tab="history">Geçmiş</button>
+  </div>
+
+  <section id="self" class="section active">
+    <div class="grid">
+      <div class="card span-8">
+        <h2>Konu Bazlı Öz Değerlendirme</h2>
+        <div class="muted">Sınav ve branşı seç; bütün konuları aynı ekranda 10'luk adımlarla değerlendir.</div>
+        <div class="form-grid" style="margin-top:16px">
+          <div class="f6"><label>Sınav</label><select id="selfExam"></select></div>
+          <div class="f6"><label>Branş</label><select id="selfSubject"></select></div>
+        </div>
+        <div id="selfTopicList" class="self-topic-list"></div>
+        <div class="actions"><button id="saveSelfBtn" class="btn btn-primary">Tümünü Kaydet</button><button id="selfPdfBtn" class="btn btn-secondary">PDF Raporunu İndir</button></div>
+      </div>
+      <div class="card span-4"><h3>Renk Aralıkları</h3>
+        <div class="rec yama"><b>%0–40 · Kırmızı</b><br>Konu temeli eksik veya güven düşük; öncelikli alan.</div>
+        <div class="rec onar"><b>%50–70 · Turuncu</b><br>Temel var; eksikler onarılmalı ve soru çeşitliliği artırılmalı.</div>
+        <div class="rec" style="border-color:#16a34a;background:var(--goodbg)"><b>%80–100 · Yeşil</b><br>Güçlü alan; aralıklı tekrarlarla korunmalı.</div>
+      </div>
+    </div>
+  </section>
+
+  <section id="entry" class="section">
+    <div class="grid">
+      <div id="entryMain" class="card span-8">
+        <h2>Yeni Çalışma Kaydı</h2>
+        <div class="muted">Önce yaptığın çalışmanın türünü seç.</div>
+        <div class="mode-grid">
+          <button class="mode-btn active" data-mode="question">Soru Çözümü<small>3–2–1 güven ve doğru/yanlış analizi</small></button>
+          <button class="mode-btn" data-mode="review">Konu Tekrarı<small>Soru çözmeden yapılan konu çalışması</small></button>
+        </div>
+
+        <div class="form-grid" style="margin-top:16px">
+          <div class="f3"><label>Tarih</label><input id="date" type="date"></div>
+          <div class="f3"><label>Sınav</label><select id="exam"></select></div>
+          <div class="f3"><label>Branş</label><select id="subject"></select></div>
+          <div class="f3"><label>Konu</label><select id="topic"></select></div>
+          <div id="totalWrap" class="f3"><label>Toplam Soru</label><input id="total" type="number" min="0" value="0"></div>
+          <div id="durationWrap" class="f3 hidden"><label>Tekrar Süresi (dk)</label><input id="duration" type="number" min="0" value="0"></div>
+          <div class="f3 hidden"><label>Konu Durumu</label>
+            <select id="status">
+              <option>Başlamadım</option><option>Konu Anlatımı</option><option>Soru Çözümü</option>
+              <option>Eksik Var</option><option>Bitti</option><option>Tam Bitti</option>
+            </select>
+          </div>
+          <div class="f6"><label>Not (opsiyonel)</label><input id="note" placeholder="Örn. Trigonometri dönüşüm formüllerinde karışıklık"></div>
+        </div>
+
+        <div id="questionFields" class="conf-grid">
+          <div class="conf">
+            <h4>3 — Kesin Emindim</h4>
+            <div class="pair">
+              <div><label>Doğru</label><input id="c3d" type="number" min="0" value="0"></div>
+              <div><label>Yanlış</label><input id="c3y" type="number" min="0" value="0"></div>
+            </div>
+          </div>
+          <div class="conf">
+            <h4>2 — İki Şık Arasında</h4>
+            <div class="pair">
+              <div><label>Doğru</label><input id="c2d" type="number" min="0" value="0"></div>
+              <div><label>Yanlış</label><input id="c2y" type="number" min="0" value="0"></div>
+            </div>
+          </div>
+          <div class="conf">
+            <h4>1 — Emin Değildim</h4>
+            <div class="pair">
+              <div><label>Doğru</label><input id="c1d" type="number" min="0" value="0"></div>
+              <div><label>Yanlış</label><input id="c1y" type="number" min="0" value="0"></div>
+            </div>
+          </div>
+          <div class="conf">
+            <h4>Boş</h4>
+            <div><label>Boş Soru</label><input id="blank" type="number" min="0" value="0"></div>
+            <div class="muted" style="margin-top:8px">Boşlar doğrudan pekiştirme sinyalidir.</div>
+          </div>
+        </div>
+
+        <div id="sumInfo" class="alert"></div>
+        <div class="actions">
+          <button id="saveBtn" class="btn btn-primary">Kaydı Ekle</button>
+          <button id="resetBtn" class="btn btn-secondary">Formu Temizle</button>
+        </div>
+      </div>
+
+      <div id="yopEngine" class="card span-4">
+        <h3>YOP Karar Motoru</h3>
+        <div class="rec yama"><b>YAMA</b><br>Soruya <b>3</b> verdin, yani “doğru yaptığıma eminim” dedin; fakat soru yanlış çıktı. Asıl gizli risk burada. En kritik çalışma alanın burası.</div>
+        <div class="rec onar"><b>ONAR</b><br>Soruya <b>2</b> verdin, yani iki şık arasında kaldın ve birini işaretledin. Sonuç doğru da yanlış da olsa burada bilgi/ayrım net değil; onarman gerekir.</div>
+        <div class="rec pek"><b>PEKİŞTİR</b><br>Soruya <b>1</b> verdin, yani emin değildin ama işaretledin. Sonuç doğru da yanlış da olsa konuyu pekiştirmen gerekir. Boşlar da aynı şekilde pekiştirme sinyalidir.</div>
+        <div class="rec"><b>GÜÇLÜ</b><br>Soruya <b>3</b> verdin ve gerçekten doğru çıktı. Burada bilgi ile güven birbiriyle uyumlu.</div>
+      </div>
+    </div>
+  </section>
+
+  <section id="dashboard" class="section">
+    <div class="card dashboard-filter"><div><h3 style="margin-bottom:4px">Analiz Kapsamı</h3><div class="muted">Geneli veya incelemek istediğin branşı seç.</div></div><div style="display:flex;gap:10px;align-items:end;flex-wrap:wrap"><div><label>Branş</label><select id="dashboardSubject"><option>Genel</option><option>Matematik</option><option>Geometri</option><option>Fizik</option><option>Kimya</option><option>Biyoloji</option></select></div><button class="btn btn-primary" id="exportAnalysisPdf">PDF Raporu</button></div></div>
+    <div class="kpis" id="kpis"></div>
+    <div class="grid" style="margin-top:16px">
+      <div class="card span-12"><h3 id="resultsChartTitle">Soru Sonuçları</h3><div class="muted">Toplam, doğru, yanlış ve boş adetleri.</div><div id="branchResults" class="scroll" style="margin-top:10px;max-height:none"></div></div>
+      <div class="card span-12"><h3 id="yopChartTitle">YOP Dağılımı</h3><div class="muted">Güçlü, Yama, Onar ve Pekiştir adetleri.</div><div id="branchYop" class="scroll" style="margin-top:10px;max-height:none"></div></div>
+    </div>
+  </section>
+
+  <section id="topics" class="section">
+    <div class="grid">
+      <div class="card span-4">
+        <h3>Konu Filtresi</h3>
+        <div class="form-grid">
+          <div class="f6"><label>Sınav</label><select id="topicExam"></select></div>
+          <div class="f6"><label>Branş</label><select id="topicSubject"></select></div>
+        </div>
+        <div class="footer-note">Konu durumu son kayıttaki seçimine göre görünür. Henüz kayıt yoksa “Başlamadım”.</div>
+      </div>
+      <div class="card span-8">
+        <h3>Konu Durumu</h3>
+        <div id="topicList" class="topic-list"></div>
+      </div>
+    </div>
+  </section>
+
+  <section id="teachers" class="section">
+    <div class="card">
+      <h2>Hocalarım</h2>
+      <div class="muted" style="margin-bottom:18px">Kanalı YouTube'da açmak için hocanın kartına tıkla.</div>
+      <div class="teacher-group"><h3>Matematik &amp; Geometri</h3><div class="teacher-grid">
+        <a class="teacher-card" href="https://www.youtube.com/@merthoca" target="_blank" rel="noopener"><span class="teacher-avatar">MH<img src="https://unavatar.io/youtube/merthoca" alt="Mert Hoca kanal görseli" onerror="this.remove()"></span><span><span class="teacher-name">Mert Hoca</span><span class="youtube-label">YouTube kanalını aç</span></span></a>
+        <a class="teacher-card" href="https://www.youtube.com/@RehberMatematik" target="_blank" rel="noopener"><span class="teacher-avatar">RM<img src="https://unavatar.io/youtube/RehberMatematik" alt="Rehber Matematik kanal görseli" onerror="this.remove()"></span><span><span class="teacher-name">Rehber Matematik</span><span class="muted">Mehmet Hoca</span><span class="youtube-label">YouTube kanalını aç</span></span></a>
+        <a class="teacher-card" href="https://www.youtube.com/@EyupB" target="_blank" rel="noopener"><span class="teacher-avatar">EB<img src="https://unavatar.io/youtube/EyupB" alt="Eyüp B. kanal görseli" onerror="this.remove()"></span><span><span class="teacher-name">Eyüp B.</span><span class="muted">Eyüp Boncuk</span><span class="youtube-label">YouTube kanalını aç</span></span></a>
+        <a class="teacher-card" href="https://www.youtube.com/kenankarailegeometri" target="_blank" rel="noopener"><span class="teacher-avatar">KK<img src="https://unavatar.io/youtube/kenankarailegeometri" alt="Kenan Kara kanal görseli" onerror="this.remove()"></span><span><span class="teacher-name">Kenan Kara ile Geometri</span><span class="youtube-label">YouTube kanalını aç</span></span></a>
+        <a class="teacher-card" href="https://www.youtube.com/channel/UCC4Bpzdn4cTDB-9nG-Y2gSw" target="_blank" rel="noopener"><span class="teacher-avatar">BM<img src="https://unavatar.io/youtube/Barıştıranmatematik" alt="Barıştıran Matematik kanal görseli" onerror="this.remove()"></span><span><span class="teacher-name">Barıştıran Matematik</span><span class="muted">Barış Kahvecioğlu</span><span class="youtube-label">YouTube kanalını aç</span></span></a>
+      </div></div>
+      <div class="teacher-group"><h3>Türkçe &amp; Edebiyat</h3><div class="teacher-grid">
+        <a class="teacher-card" href="https://www.youtube.com/channel/UCyohoF5P2JFvc3KLLZRwDug" target="_blank" rel="noopener"><span class="teacher-avatar">RH<img src="https://unavatar.io/youtube/RüştüHocaileTürkçe" alt="Rüştü Hoca kanal görseli" onerror="this.remove()"></span><span><span class="teacher-name">Rüştü Hoca ile Türkçe</span><span class="youtube-label">YouTube kanalını aç</span></span></a>
+        <a class="teacher-card" href="https://www.youtube.com/@BenimHocam" target="_blank" rel="noopener"><span class="teacher-avatar">KG<img src="https://unavatar.io/youtube/BenimHocam" alt="Benim Hocam kanal görseli" onerror="this.remove()"></span><span><span class="teacher-name">Kadir Gümüş</span><span class="muted">Benim Hocam</span><span class="youtube-label">YouTube kanalını aç</span></span></a>
+      </div></div>
+      <div class="teacher-group"><h3>Fen Bilimleri</h3><div class="teacher-grid">
+        <a class="teacher-card" href="https://www.youtube.com/@vipfizik" target="_blank" rel="noopener"><span class="teacher-avatar">VF<img src="https://unavatar.io/youtube/vipfizik" alt="VIP Fizik kanal görseli" onerror="this.remove()"></span><span><span class="teacher-name">VIP Fizik</span><span class="youtube-label">YouTube kanalını aç</span></span></a>
+        <a class="teacher-card" href="https://www.youtube.com/channel/UC_IRxSYYyDa4Li9lxAM4xbQ" target="_blank" rel="noopener"><span class="teacher-avatar">ÖA<img src="https://unavatar.io/youtube/ÖzcanAykınFİZİK-y2k" alt="Özcan Aykın kanal görseli" onerror="this.remove()"></span><span><span class="teacher-name">Özcan Aykın</span><span class="muted">Fizik</span><span class="youtube-label">YouTube kanalını aç</span></span></a>
+        <a class="teacher-card" href="https://www.youtube.com/@gorkemsahinn" target="_blank" rel="noopener"><span class="teacher-avatar">GŞ<img src="https://unavatar.io/youtube/gorkemsahinn" alt="Görkem Şahin kanal görseli" onerror="this.remove()"></span><span><span class="teacher-name">Görkem Şahin</span><span class="muted">Kimya</span><span class="youtube-label">YouTube kanalını aç</span></span></a>
+        <a class="teacher-card" href="https://www.youtube.com/channel/UCY7Nh-CV3qqaWTxldlG4RCA" target="_blank" rel="noopener"><span class="teacher-avatar">DB<img src="https://unavatar.io/youtube/BARIŞHOCABİYOLOJİ" alt="Dr. Biyoloji kanal görseli" onerror="this.remove()"></span><span><span class="teacher-name">Dr. Biyoloji</span><span class="muted">Barış Hoca</span><span class="youtube-label">YouTube kanalını aç</span></span></a>
+        <a class="teacher-card" href="https://www.youtube.com/channel/UCzkNEai752Dr3AF4nEyTnqA" target="_blank" rel="noopener"><span class="teacher-avatar">FB<img src="https://unavatar.io/youtube/FUNDAmentalsBiyoloji" alt="FUNDAmentals Biyoloji kanal görseli" onerror="this.remove()"></span><span><span class="teacher-name">FUNDAmentals Biyoloji</span><span class="youtube-label">YouTube kanalını aç</span></span></a>
+      </div></div>
+    </div>
+  </section>
+
+  <section id="history" class="section">
+    <div class="card">
+      <div style="display:flex;justify-content:space-between;gap:12px;align-items:center;flex-wrap:wrap">
+        <div><h3>Çalışma Geçmişi</h3><div class="muted">Soru çözümleri ve konu tekrarları bu tarayıcıda saklanır.</div></div>
+        <div class="actions" style="margin-top:0">
+          <button id="csvBtn" class="btn btn-secondary">CSV İndir</button>
+          <button id="jsonBtn" class="btn btn-secondary">Yedek Al (JSON)</button>
+          <button id="clearBtn" class="btn btn-danger">Tüm Veriyi Sil</button>
+        </div>
+      </div>
+      <div class="scroll" style="margin-top:14px"><table>
+        <thead><tr><th>Tarih</th><th>Tür</th><th>Sınav</th><th>Branş / Konu</th><th>Sonuç</th><th>3 D/Y</th><th>2 D/Y</th><th>1 D/Y</th><th>Boş</th><th>YOP</th><th></th></tr></thead>
+        <tbody id="historyBody"></tbody>
+      </table></div>
+    </div>
+  </section>
+</main>
+
+<script>
+const topics = {
+ TYT:{
+  "Matematik":["Temel Kavramlar","Sayı Basamakları","Bölme ve Bölünebilme","EBOB–EKOK","Rasyonel Sayılar","Basit Eşitsizlikler","Mutlak Değer","Üslü Sayılar","Köklü Sayılar","Çarpanlara Ayırma","Denklemler","Oran–Orantı","Problemler","Kümeler","Mantık","Fonksiyonlara Giriş","Permütasyon–Kombinasyon","Olasılık","İstatistik ve Veri"],
+  "Geometri":["Açılar ve Üçgenler","Çokgenler","Dörtgenler","Çember ve Daire","Analitik Geometri","Katı Cisimler"],
+  "Fizik":["Fizik Bilimine Giriş","Madde ve Özellikleri","Hareket ve Kuvvet","İş–Güç–Enerji","Isı–Sıcaklık–Genleşme","Elektrostatik","Elektrik ve Manyetizma","Basınç","Kaldırma Kuvveti","Dalgalar","Optik"],
+  "Kimya":["Kimya Bilimi","Atom ve Periyodik Sistem","Kimyasal Türler Arası Etkileşimler","Maddenin Halleri","Doğa ve Kimya","Kimyanın Temel Kanunları","Mol ve Hesaplamalar","Karışımlar","Asit–Baz–Tuz","Kimya Her Yerde"],
+  "Biyoloji":["Canlıların Ortak Özellikleri","Canlıların Temel Bileşenleri","Hücre ve Organeller","Hücre Zarından Madde Geçişi","Canlıların Sınıflandırılması","Hücre Bölünmeleri","Kalıtımın Genel İlkeleri","Ekosistem Ekolojisi","Çevre Sorunları"]
+ },
+ AYT:{
+  "Matematik":["Fonksiyonlar","Polinomlar","2. Dereceden Denklemler","Karmaşık Sayılar","Parabol","Eşitsizlikler","Trigonometri","Logaritma","Diziler","Permütasyon–Kombinasyon","Binom","Olasılık","Limit","Türev","İntegral"],
+  "Geometri":["Üçgenler","Çokgenler","Dörtgenler","Çember ve Daire","Analitik Geometri","Dönüşüm Geometrisi","Katı Cisimler"],
+  "Fizik":["Vektörler","Kuvvet–Tork–Denge","Kütle Merkezi","Basit Makineler","Hareket","Newton Yasaları","İş–Enerji–Momentum","Elektrik Alan ve Potansiyel","Paralel Levhalar ve Sığa","Manyetizma ve Elektromanyetik İndüksiyon","Alternatif Akım ve Transformatörler","Çembersel Hareket","Basit Harmonik Hareket","Dalga Mekaniği","Elektromanyetik Dalgalar","Atom Fiziği","Modern Fizik","Modern Fiziğin Teknolojideki Uygulamaları"],
+  "Kimya":["Modern Atom Teorisi","Gazlar","Sıvı Çözeltiler ve Çözünürlük","Kimyasal Tepkimelerde Enerji","Tepkime Hızları","Kimyasal Denge","Asit–Baz Dengesi","Çözünürlük Dengesi","Kimya ve Elektrik","Karbon Kimyasına Giriş","Organik Bileşikler","Enerji Kaynakları ve Bilimsel Gelişmeler"],
+  "Biyoloji":["Sinir Sistemi","Endokrin Sistem","Duyu Organları","Destek ve Hareket Sistemi","Sindirim Sistemi","Dolaşım ve Bağışıklık","Solunum Sistemi","Üriner Sistem","Üreme Sistemi ve Embriyonik Gelişim","Komünite ve Popülasyon Ekolojisi","Genden Proteine","Canlılarda Enerji Dönüşümleri","Fotosentez","Hücresel Solunum","Bitki Biyolojisi","Canlılar ve Çevre"]
+ }
+};
+
+const $=id=>document.getElementById(id);
+let data=JSON.parse(localStorage.getItem("yksYopData")||"[]");
+let selfData=JSON.parse(localStorage.getItem("yksYopSelf")||"{}");
+let workMode=localStorage.getItem("yksYopMode")||"question";
+function migratedGeometryTopic(exam,subject,topic){
+ if(subject!=="Matematik")return null;
+ if(exam==="TYT"&&topic.startsWith("Geometri: ")){
+  const t=topic.replace("Geometri: ","");
+  return t==="Çember–Daire"?"Çember ve Daire":t==="Analitik"?"Analitik Geometri":t;
+ }
+ if(exam==="AYT"&&["Analitik Geometri","Çember ve Daire"].includes(topic))return topic;
+ return null;
+}
+let geometryChanged=false;
+data.forEach(r=>{const t=migratedGeometryTopic(r.exam,r.subject,r.topic);if(t){r.subject="Geometri";r.topic=t;geometryChanged=true}});
+Object.entries(selfData).forEach(([oldKey,r])=>{const t=migratedGeometryTopic(r.exam,r.subject,r.topic);if(t){const moved={...r,subject:"Geometri",topic:t},newKey=[r.exam,"Geometri",t].join("|");if(!selfData[newKey])selfData[newKey]=moved;delete selfData[oldKey];geometryChanged=true}});
+if(geometryChanged){localStorage.setItem("yksYopData",JSON.stringify(data));localStorage.setItem("yksYopSelf",JSON.stringify(selfData))}
+
+function setToday(){ $("date").value=new Date().toISOString().slice(0,10); }
+function fillSelect(el,arr){ el.innerHTML=arr.map(x=>`<option>${x}</option>`).join(""); }
+function setupSelectors(){
+ fillSelect($("exam"),Object.keys(topics)); fillSelect($("topicExam"),Object.keys(topics));
+ fillSelect($("selfExam"),Object.keys(topics));
+ updateSubjects("exam","subject","topic"); updateSubjects("topicExam","topicSubject",null);
+ updateSelfSubjects();
+ updateTopics();
+}
+function updateSelfSubjects(){
+ const ex=$("selfExam").value; fillSelect($("selfSubject"),Object.keys(topics[ex])); renderSelfTopics();
+}
+$("selfExam").onchange=updateSelfSubjects;$("selfSubject").onchange=renderSelfTopics;
+function updateSubjects(examId,subjectId,topicId){
+ const ex=$(examId).value; fillSelect($(subjectId),Object.keys(topics[ex]));
+ if(topicId) updateTopics();
+}
+function updateTopics(){ const ex=$("exam").value, sub=$("subject").value; fillSelect($("topic"),topics[ex][sub]); }
+$("exam").onchange=()=>updateSubjects("exam","subject","topic");
+$("subject").onchange=updateTopics;
+$("topicExam").onchange=()=>{updateSubjects("topicExam","topicSubject",null); renderTopicList()};
+$("topicSubject").onchange=renderTopicList;
+
+document.querySelectorAll(".tab").forEach(b=>b.onclick=()=>{
+ document.querySelectorAll(".tab").forEach(x=>x.classList.remove("active"));
+ document.querySelectorAll(".section").forEach(x=>x.classList.remove("active"));
+ b.classList.add("active"); $(b.dataset.tab).classList.add("active");
+ localStorage.setItem("yksYopTab",b.dataset.tab);
+ if(b.dataset.tab==="dashboard") renderDashboard();
+ if(b.dataset.tab==="topics") renderTopicList();
+ if(b.dataset.tab==="history") renderHistory();
+});
+
+function selfColor(v){return v<=40?"red":v<=70?"orange":"green"}
+function renderSelfTopics(){
+ const ex=$("selfExam").value,sub=$("selfSubject").value,list=topics[ex][sub];
+ $("selfTopicList").innerHTML=list.map((topic,i)=>{
+  const r=selfData[[ex,sub,topic].join("|")],score=r?.score??0;
+  return `<div class="self-topic-row ${selfColor(score)}" data-index="${i}">
+   <div class="self-topic-head"><div class="self-topic-name">${topic}</div><input class="self-topic-score" type="range" min="0" max="100" step="10" value="${score}" aria-label="${topic} değerlendirme yüzdesi"><div class="self-topic-pct">%<span>${score}</span></div></div>
+   <div class="self-topic-note"><label>Açıklama (opsiyonel)</label><input class="self-topic-description" value="${esc(r?.note||"")}" placeholder="Bu konudaki güçlü yönünü, eksiğini veya çalışma ihtiyacını yaz"></div>
+  </div>`;
+ }).join("");
+ document.querySelectorAll(".self-topic-score").forEach(slider=>slider.oninput=()=>{
+  const row=slider.closest(".self-topic-row"),v=Number(slider.value);row.querySelector(".self-topic-pct span").textContent=v;row.classList.remove("red","orange","green");row.classList.add(selfColor(v));
+ });
+}
+$("saveSelfBtn").onclick=()=>{
+ const ex=$("selfExam").value,sub=$("selfSubject").value,now=Date.now();
+ document.querySelectorAll("#selfTopicList .self-topic-row").forEach(row=>{
+  const topic=topics[ex][sub][Number(row.dataset.index)],k=[ex,sub,topic].join("|");
+  selfData[k]={exam:ex,subject:sub,topic,score:Number(row.querySelector(".self-topic-score").value),note:row.querySelector(".self-topic-description").value.trim(),updated:now};
+ });
+ localStorage.setItem("yksYopSelf",JSON.stringify(selfData));alert(sub+" için tüm konu değerlendirmeleri kaydedildi.");
+};
+function esc(v){return String(v??"").replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]))}
+function selfReportHtml(){
+ const rows=Object.values(selfData).sort((a,b)=>a.exam.localeCompare(b.exam)||a.subject.localeCompare(b.subject,"tr")||a.topic.localeCompare(b.topic,"tr"));
+ const red=rows.filter(x=>x.score<=40).length,orange=rows.filter(x=>x.score>=50&&x.score<=70).length,green=rows.filter(x=>x.score>=80).length;
+ const subjects=["Matematik","Geometri","Fizik","Kimya","Biyoloji"];
+ const subjectRows=subjects.map(s=>{const a=rows.filter(x=>x.subject===s),avg=a.length?Math.round(a.reduce((t,x)=>t+x.score,0)/a.length):0;return `<div class="subject"><div><b>${s}</b><span>${a.length} konu · ortalama %${avg}</span></div><div class="track"><i style="width:${avg}%;background:${avg<=40?"#dc2626":avg<=70?"#d97706":"#16a34a"}"></i></div></div>`}).join("");
+ const detail=rows.map(r=>`<tr><td>${esc(r.exam)}</td><td>${esc(r.subject)}</td><td>${esc(r.topic)}</td><td><b>%${r.score}</b></td><td>${r.score<=40?"Kritik / Eksik":r.score<=70?"Gelişen / Onarılmalı":"Güçlü"}</td><td>${esc(r.note||"—")}</td></tr>`).join("");
+ return `<!doctype html><html lang="tr"><head><meta charset="utf-8"><title>YKS Öz Değerlendirme Raporu</title><style>
+ @page{size:A4;margin:14mm}*{box-sizing:border-box}body{font-family:Arial,sans-serif;color:#18212f;margin:0;font-size:11px}h1{font-size:23px;margin:0}h2{font-size:15px;margin:22px 0 10px}.top{border-bottom:3px solid #2563eb;padding-bottom:12px;display:flex;justify-content:space-between;align-items:end}.date{color:#64748b}.cards{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin-top:16px}.card{border:1px solid #e5e7eb;border-radius:10px;padding:10px}.card b{display:block;font-size:21px;margin-bottom:3px}.red{background:#fef2f2;color:#991b1b}.orange{background:#fffbeb;color:#92400e}.green{background:#f0fdf4;color:#166534}.subject{display:grid;grid-template-columns:180px 1fr;gap:12px;align-items:center;margin:8px 0}.subject span{display:block;color:#64748b;margin-top:2px}.track{height:12px;background:#eef2f7;border-radius:99px;overflow:hidden}.track i{display:block;height:100%;border-radius:99px}table{width:100%;border-collapse:collapse;font-size:9px}th{background:#111827;color:#fff;text-align:left;padding:7px}td{padding:7px;border-bottom:1px solid #e5e7eb;vertical-align:top}tr{break-inside:avoid}.foot{margin-top:14px;color:#64748b;font-size:9px}@media print{.no-print{display:none}}
+ </style></head><body><div class="top"><div><h1>YKS Konu Öz Değerlendirme Raporu</h1><div>Konu hâkimiyeti ve gelişim alanları</div></div><div class="date">${new Date().toLocaleDateString("tr-TR")}</div></div>
+ <div class="cards"><div class="card"><b>${rows.length}</b>Değerlendirilen konu</div><div class="card red"><b>${red}</b>Kırmızı · %0–40</div><div class="card orange"><b>${orange}</b>Turuncu · %50–70</div><div class="card green"><b>${green}</b>Yeşil · %80–100</div></div>
+ <h2>Branş Bazlı Görünüm</h2>${subjectRows}<h2>Konu Detayı</h2><table><thead><tr><th>Sınav</th><th>Branş</th><th>Konu</th><th>Seviye</th><th>Durum</th><th>Not</th></tr></thead><tbody>${detail}</tbody></table><div class="foot">Bu rapor, konu bazında girilen kişisel öz değerlendirme yüzdelerinden oluşturulmuştur.</div>
+ <script>window.onload=()=>setTimeout(()=>window.print(),300)<\/script></body></html>`;
+}
+$("selfPdfBtn").onclick=()=>{if(!Object.keys(selfData).length){alert("PDF raporu oluşturmak için önce en az bir konu değerlendirmesi kaydetmelisin.");return}const w=window.open("","_blank");if(!w){alert("PDF penceresi açılamadı. Tarayıcında açılır pencereye izin ver.");return}w.document.open();w.document.write(selfReportHtml());w.document.close();};
+
+function setMode(m){
+ workMode=m;localStorage.setItem("yksYopMode",m);
+ document.querySelectorAll(".mode-btn").forEach(x=>x.classList.toggle("active",x.dataset.mode===m));
+ $("questionFields").classList.toggle("hidden",m==="review");$("totalWrap").classList.toggle("hidden",m==="review");$("durationWrap").classList.toggle("hidden",m==="question");$("sumInfo").classList.toggle("hidden",m==="review");
+ $("yopEngine").classList.toggle("hidden",m==="review");
+ $("entryMain").classList.toggle("span-8",m==="question");
+ $("entryMain").classList.toggle("span-12",m==="review");
+}
+document.querySelectorAll(".mode-btn").forEach(x=>x.onclick=()=>setMode(x.dataset.mode));
+
+const nums=["total","c3d","c3y","c2d","c2y","c1d","c1y","blank"];
+nums.forEach(id=>$(id).addEventListener("input",validateSum));
+function n(id){return Math.max(0,Number($(id).value)||0)}
+function validateSum(){
+ const sum=n("c3d")+n("c3y")+n("c2d")+n("c2y")+n("c1d")+n("c1y")+n("blank");
+ const total=n("total"), a=$("sumInfo"); if(workMode==="review")return true;
+ a.className="alert show "+(sum===total?"ok":"error");
+ a.textContent=`Dağılım toplamı: ${sum} / Toplam soru: ${total}`+(sum===total?" ✓":" — rakamlar eşleşmiyor.");
+ return sum===total && total>0;
+}
+
+$("saveBtn").onclick=()=>{
+ if(!validateSum()){alert("Toplam soru ile dağılım toplamı eşleşmeli ve toplam soru 0'dan büyük olmalı.");return}
+ const rec={
+  id:Date.now(),date:$("date").value,exam:$("exam").value,subject:$("subject").value,topic:$("topic").value,
+  type:workMode,duration:n("duration"),
+  total:n("total"),c3d:n("c3d"),c3y:n("c3y"),c2d:n("c2d"),c2y:n("c2y"),c1d:n("c1d"),c1y:n("c1y"),blank:n("blank"),
+  status:$("status").value,note:$("note").value.trim()
+ };
+ data.push(rec); localStorage.setItem("yksYopData",JSON.stringify(data));
+ alert("Kayıt eklendi."); resetForm(false); saveDraft();
+};
+function resetForm(resetSelectors=true){
+ ["total","duration","c3d","c3y","c2d","c2y","c1d","c1y","blank"].forEach(id=>$(id).value=0);
+ $("note").value=""; $("status").value="Soru Çözümü"; $("sumInfo").className="alert";
+ if(resetSelectors){$("exam").selectedIndex=0; updateSubjects("exam","subject","topic")}
+}
+$("resetBtn").onclick=()=>resetForm();
+
+function aggregate(list=data){
+ return list.reduce((a,r)=>{
+  ["total","c3d","c3y","c2d","c2y","c1d","c1y","blank"].forEach(k=>a[k]+=r[k]||0); return a;
+ },{total:0,c3d:0,c3y:0,c2d:0,c2y:0,c1d:0,c1y:0,blank:0});
+}
+function pct(a,b){return b?Math.round(a/b*100):0}
+function bar(label,val,cls="",suffix="%"){return `<div class="barrow"><b>${label}</b><div class="bar"><div class="fill ${cls}" style="width:${Math.min(100,val)}%"></div></div><span>${val}${suffix}</span></div>`}
+
+function dashboardGroups(records,selected){
+ if(selected==="Genel")return [{label:"Genel",records},...["Matematik","Geometri","Fizik","Kimya","Biyoloji"].map(subject=>({label:subject,records:records.filter(r=>r.subject===subject)}))];
+ const subjectRecords=records.filter(r=>r.subject===selected);
+ return [{label:selected+" Toplam",records:subjectRecords},...["TYT","AYT"].flatMap(exam=>topics[exam][selected].map(topic=>({label:exam+" · "+topic,records:subjectRecords.filter(r=>r.exam===exam&&r.topic===topic)}))).filter(g=>g.records.length)];
+}
+function analysisRows(groups){return groups.map(g=>{const x=aggregate(g.records);return{label:g.label,total:x.total,correct:x.c3d+x.c2d+x.c1d,wrong:x.c3y+x.c2y+x.c1y,blank:x.blank,strong:x.c3d,patch:x.c3y,repair:x.c2d+x.c2y,reinforce:x.c1d+x.c1y+x.blank}})}
+function resultTable(rows){
+ if(!rows.some(x=>x.total))return '<div class="chart-empty">Bu kapsamda henüz soru kaydı yok.</div>';
+ return `<table><thead><tr><th>Kapsam</th><th>Toplam</th><th>Doğru</th><th>Yanlış</th><th>Boş</th><th>Başarı</th></tr></thead><tbody>${rows.map((x,i)=>`<tr${i===0?' style="font-weight:900;background:#f8fafc"':''}><td>${esc(x.label)}</td><td>${x.total}</td><td class="risk-low">${x.correct}</td><td class="risk-high">${x.wrong}</td><td>${x.blank}</td><td>%${pct(x.correct,x.total)}</td></tr>`).join("")}</tbody></table>`;
+}
+function yopTable(rows){
+ if(!rows.some(x=>x.total))return '<div class="chart-empty">Bu kapsamda henüz soru kaydı yok.</div>';
+ return `<table><thead><tr><th>Kapsam</th><th>Güçlü</th><th>Yama</th><th>Onar</th><th>Pekiştir</th></tr></thead><tbody>${rows.map((x,i)=>`<tr${i===0?' style="font-weight:900;background:#f8fafc"':''}><td>${esc(x.label)}</td><td class="risk-low">${x.strong}</td><td class="risk-high">${x.patch}</td><td class="risk-med">${x.repair}</td><td style="color:#6d28d9;font-weight:900">${x.reinforce}</td></tr>`).join("")}</tbody></table>`;
+}
+function renderDashboard(){
+ const selected=$("dashboardSubject")?.value||"Genel",questionData=data.filter(r=>r.type!=="review"&&(selected==="Genel"||r.subject===selected));
+ const a=aggregate(questionData),correct=a.c3d+a.c2d+a.c1d,wrong=a.c3y+a.c2y+a.c1y;
+ $("kpis").innerHTML=`
+  <div class="kpi"><small>Çözülen Soru</small><div class="v">${a.total}</div><small>Toplam soru adedi</small></div>
+  <div class="kpi good"><small>Doğru</small><div class="v">${correct}</div><small>Doğru soru adedi</small></div>
+  <div class="kpi yama"><small>Yanlış</small><div class="v">${wrong}</div><small>Yanlış soru adedi</small></div>
+  <div class="kpi pek"><small>Boş</small><div class="v">${a.blank}</div><small>Boş bırakılan soru</small></div>`;
+ const rows=analysisRows(dashboardGroups(data.filter(r=>r.type!=="review"),selected));
+ $("resultsChartTitle").textContent=selected==="Genel"?"Genel ve Branş Bazlı Soru Sonuçları":selected+" · Konu Bazlı Soru Sonuçları";
+ $("yopChartTitle").textContent=selected==="Genel"?"Genel ve Branş Bazlı YOP Dağılımı":selected+" · Konu Bazlı YOP Dağılımı";
+ $("branchResults").innerHTML=resultTable(rows);
+ $("branchYop").innerHTML=yopTable(rows);
+}
+$("dashboardSubject").onchange=renderDashboard;
+
+function analysisPdfHtml(){
+ const selected=$("dashboardSubject").value||"Genel",records=data.filter(r=>r.type!=="review"),rows=analysisRows(dashboardGroups(records,selected));
+ const resultRows=rows.map((x,i)=>`<tr class="${i===0?'total':''}"><td>${esc(x.label)}</td><td>${x.total}</td><td class="green">${x.correct}</td><td class="red">${x.wrong}</td><td>${x.blank}</td><td>%${pct(x.correct,x.total)}</td></tr>`).join("");
+ const yopRows=rows.map((x,i)=>`<tr class="${i===0?'total':''}"><td>${esc(x.label)}</td><td class="green">${x.strong}</td><td class="red">${x.patch}</td><td class="orange">${x.repair}</td><td class="purple">${x.reinforce}</td></tr>`).join("");
+ return `<!doctype html><html><head><meta charset="utf-8"><title>YKS YOP Analiz Raporu</title><style>@page{size:A4;margin:14mm}*{box-sizing:border-box}body{font-family:Arial,sans-serif;color:#18212f;font-size:11px;margin:0}h1{font-size:22px;margin:0}h2{font-size:15px;margin:22px 0 8px}.head{border-bottom:3px solid #dc0005;padding-bottom:12px;display:flex;justify-content:space-between;align-items:end}.muted{color:#64748b}.cards{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin-top:15px}.card{border:1px solid #e5e7eb;border-radius:9px;padding:10px}.card b{display:block;font-size:21px;margin-bottom:3px}table{width:100%;border-collapse:collapse}th{background:#111827;color:#fff;text-align:left;padding:8px}td{padding:8px;border-bottom:1px solid #e5e7eb}.total{font-weight:bold;background:#f1f5f9}.green{color:#15803d;font-weight:bold}.red{color:#b91c1c;font-weight:bold}.orange{color:#b45309;font-weight:bold}.purple{color:#6d28d9;font-weight:bold}.foot{margin-top:16px;color:#64748b;font-size:9px}</style></head><body><div class="head"><div><h1>YKS YOP Analiz Raporu</h1><div class="muted">Kapsam: ${esc(selected)}</div></div><div>${new Date().toLocaleDateString('tr-TR')}</div></div><div class="cards"><div class="card"><b>${rows[0]?.total||0}</b>Çözülen soru</div><div class="card"><b class="green">${rows[0]?.correct||0}</b>Doğru</div><div class="card"><b class="red">${rows[0]?.wrong||0}</b>Yanlış</div><div class="card"><b>${rows[0]?.blank||0}</b>Boş</div></div><h2>Soru Sonuçları</h2><table><thead><tr><th>Kapsam</th><th>Toplam</th><th>Doğru</th><th>Yanlış</th><th>Boş</th><th>Başarı</th></tr></thead><tbody>${resultRows}</tbody></table><h2>YOP Dağılımı</h2><table><thead><tr><th>Kapsam</th><th>Güçlü</th><th>Yama</th><th>Onar</th><th>Pekiştir</th></tr></thead><tbody>${yopRows}</tbody></table><div class="foot">Rapor, soru çözümü kayıtlarından ve 3–2–1 güven seviyelerinden oluşturulmuştur.</div></body></html>`;
+}
+$("exportAnalysisPdf").onclick=()=>{const w=window.open("","_blank");if(!w){alert("PDF penceresi açılamadı. Tarayıcında açılır pencereye izin ver.");return}w.document.open();w.document.write(analysisPdfHtml());w.document.close();setTimeout(()=>w.print(),300)};
+
+function lastStatus(ex,sub,topic){
+ const arr=data.filter(r=>r.exam===ex&&r.subject===sub&&r.topic===topic).sort((a,b)=>b.id-a.id);
+ return arr[0]?.status||"Başlamadım";
+}
+function renderTopicList(){
+ const ex=$("topicExam").value, sub=$("topicSubject").value;
+ $("topicList").innerHTML=topics[ex][sub].map(t=>`<div class="topic-item"><span class="topic-name">${t}</span><span class="status">${lastStatus(ex,sub,t)}</span></div>`).join("");
+}
+function yopText(r){
+ if(r.type==="review")return "—";
+ const a=[]; if(r.c3y)a.push(`Y:${r.c3y}`); if(r.c2d+r.c2y)a.push(`O:${r.c2d+r.c2y}`); if(r.c1d+r.c1y+r.blank)a.push(`P:${r.c1d+r.c1y+r.blank}`);
+ return a.length?a.join(" / "):"Güçlü";
+}
+function renderHistory(){
+ const rows=[...data].sort((a,b)=>b.id-a.id);
+ $("historyBody").innerHTML=rows.length?rows.map(r=>`<tr>
+  <td>${r.date||""}</td><td><span class="status">${r.type==="review"?"Konu Tekrarı":"Soru Çözümü"}</span></td><td>${r.exam}</td><td><b>${r.subject}</b><br>${r.topic}${r.note?`<br><span class="muted">${r.note}</span>`:""}</td>
+  <td>${r.type==="review"?(r.duration||0)+" dk":(r.total||0)+" soru"}</td><td>${r.type==="review"?"—":(r.c3d||0)+"/"+(r.c3y||0)}</td><td>${r.type==="review"?"—":(r.c2d||0)+"/"+(r.c2y||0)}</td><td>${r.type==="review"?"—":(r.c1d||0)+"/"+(r.c1y||0)}</td><td>${r.type==="review"?"—":r.blank||0}</td>
+  <td>${yopText(r)}</td><td><button class="btn btn-danger" style="padding:6px 9px" onclick="delRec(${r.id})">Sil</button></td>
+ </tr>`).join(""):`<tr><td colspan="11" class="empty">Henüz kayıt yok.</td></tr>`;
+}
+window.delRec=id=>{if(confirm("Bu kaydı silmek istiyor musun?")){data=data.filter(r=>r.id!==id);localStorage.setItem("yksYopData",JSON.stringify(data));renderHistory()}};
+$("clearBtn").onclick=()=>{if(confirm("Tüm kayıtlar ve öz değerlendirmeler kalıcı olarak silinecek. Emin misin?")){data=[];selfData={};localStorage.removeItem("yksYopData");localStorage.removeItem("yksYopSelf");renderHistory();renderDashboard()}};
+
+function download(name,text,type){
+ const a=document.createElement("a");a.href=URL.createObjectURL(new Blob([text],{type}));a.download=name;a.click();URL.revokeObjectURL(a.href);
+}
+$("jsonBtn").onclick=()=>download("yks-yop-yedek.json",JSON.stringify({data,selfData},null,2),"application/json");
+$("csvBtn").onclick=()=>{
+ const headers=["Tarih","Sinav","Brans","Konu","Toplam","3 Dogru","3 Yanlis","2 Dogru","2 Yanlis","1 Dogru","1 Yanlis","Bos","Durum","Not"];
+ const lines=[headers,...data.map(r=>[r.date,r.exam,r.subject,r.topic,r.total,r.c3d,r.c3y,r.c2d,r.c2y,r.c1d,r.c1y,r.blank,r.status,r.note])];
+ const csv="\uFEFF"+lines.map(row=>row.map(v=>`"${String(v??"").replaceAll('"','""')}"`).join(";")).join("\n");
+ download("yks-yop-kayitlari.csv",csv,"text/csv;charset=utf-8");
+};
+
+function saveDraft(){const d={date:$("date").value,exam:$("exam").value,subject:$("subject").value,topic:$("topic").value,note:$("note").value,duration:$("duration").value};["total","c3d","c3y","c2d","c2y","c1d","c1y","blank"].forEach(k=>d[k]=$(k).value);localStorage.setItem("yksYopDraft",JSON.stringify(d))}
+function restoreDraft(){const d=JSON.parse(localStorage.getItem("yksYopDraft")||"null");if(!d)return;$("date").value=d.date||$("date").value;if(d.exam){$("exam").value=d.exam;updateSubjects("exam","subject","topic");$("subject").value=d.subject;updateTopics();$("topic").value=d.topic}["note","duration","total","c3d","c3y","c2d","c2y","c1d","c1y","blank"].forEach(k=>{if(d[k]!==undefined)$(k).value=d[k]})}
+setToday(); setupSelectors(); restoreDraft(); setMode(workMode); $("status").value="Soru Çözümü"; document.querySelectorAll("input,select").forEach(x=>x.addEventListener("input",saveDraft));validateSum(); renderDashboard(); renderTopicList(); renderHistory();renderSelfTopics();
+const savedTab=localStorage.getItem("yksYopTab");if(savedTab){document.querySelector(`.tab[data-tab="${savedTab}"]`)?.click()}
+</script>
+</body>
+</html>
