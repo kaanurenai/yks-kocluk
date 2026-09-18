@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>YKS YOP Çalışma Paneli</title>
+<title>YKS Bilgi ve Güven Paneli</title>
 <style>
 :root{
   --bg:#f5f7fb; --card:#ffffff; --text:#18212f; --muted:#6b7280;
@@ -65,7 +65,10 @@ table{width:100%;border-collapse:collapse;font-size:13px}th,td{padding:10px;bord
 .branch-panels{display:grid;grid-template-columns:repeat(2,1fr);gap:12px}.branch-panel{border:1px solid var(--line);border-radius:14px;padding:14px;background:#fff}.branch-panel h4{margin-bottom:12px}
 .teacher-group{margin-bottom:18px}.teacher-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}.teacher-card{display:flex;align-items:center;gap:12px;padding:13px;border:1px solid var(--line);border-radius:15px;background:#fff;color:var(--text);text-decoration:none;transition:.18s;min-height:88px}.teacher-card:hover{transform:translateY(-2px);border-color:#f87171;box-shadow:0 10px 24px rgba(15,23,42,.09)}.teacher-avatar{position:relative;flex:0 0 58px;width:58px;height:58px;border-radius:50%;overflow:hidden;background:linear-gradient(135deg,#ef4444,#991b1b);display:grid;place-items:center;color:#fff;font-weight:900;font-size:18px}.teacher-avatar img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;background:#fff}.teacher-name{font-weight:850;line-height:1.25}.youtube-label{font-size:11px;color:#dc2626;font-weight:800;margin-top:5px}.youtube-label:before{content:"▶ ";font-size:10px}
 .self-topic-list{display:grid;gap:11px;margin-top:16px}.self-topic-row{border:1px solid var(--line);border-radius:15px;padding:14px;background:#fff}.self-topic-head{display:grid;grid-template-columns:minmax(180px,1fr) minmax(220px,1.4fr) 58px;gap:14px;align-items:center}.self-topic-name{font-weight:800}.self-topic-pct{font-size:18px;font-weight:900;text-align:right}.self-topic-row.red{border-left:5px solid var(--yama)}.self-topic-row.orange{border-left:5px solid #d97706}.self-topic-row.green{border-left:5px solid #16a34a}.self-topic-note{margin-top:10px}.self-topic-note input{background:#f8fafc}
+.self-ai-row{display:grid;grid-template-columns:minmax(180px,1fr) minmax(220px,1.4fr) 58px;gap:14px;align-items:center;margin-top:11px;padding-top:11px;border-top:1px dashed var(--line)}.self-ai-label b{display:block}.self-ai-label span{font-size:11px;color:var(--muted)}.ai-meter{height:14px;border-radius:99px;background:#ede9fe;overflow:hidden}.ai-meter i{display:block;height:100%;background:#7c3aed;border-radius:99px}.self-ai-score{font-size:18px;font-weight:900;color:#6d28d9;text-align:right}.awareness-badge{display:inline-block;margin-top:7px;padding:5px 8px;border-radius:999px;font-size:11px;font-weight:900;background:#eef2f7;color:#475569}.awareness-badge.over{background:#fef2f2;color:#b91c1c}.awareness-badge.aligned{background:#f0fdf4;color:#15803d}.awareness-badge.under{background:#eff6ff;color:#1d4ed8}.awareness-badge.mild{background:#fffbeb;color:#b45309}
 .dashboard-filter{display:flex;justify-content:space-between;align-items:end;gap:14px;margin-bottom:14px}.dashboard-filter select{width:230px}.chart-scroll{overflow-x:auto;padding:4px 0 2px}.line-legend{display:flex;gap:14px;flex-wrap:wrap;margin:10px 0 0}.line-key{display:inline-flex;align-items:center;gap:6px;font-size:12px;font-weight:800;color:#475569}.line-dot{width:10px;height:10px;border-radius:50%}.chart-empty{height:190px;display:grid;place-items:center;color:var(--muted)}
+.upload-box{border:1.5px dashed #94a3b8;border-radius:14px;padding:14px;background:#f8fafc}.upload-box input{background:#fff}.exam-mode-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:9px;margin:15px 0}.exam-mode{border:1px solid var(--line);border-radius:13px;background:#fff;padding:12px;text-align:left;cursor:pointer;color:var(--ink)}.exam-mode b{display:block;margin-bottom:4px}.exam-mode small{color:var(--muted);line-height:1.35}.exam-mode.active{border:2px solid var(--red);background:#fff5f5;padding:11px}.ai-status{margin-top:12px;padding:12px 14px;border-radius:12px;background:#eff6ff;color:#1d4ed8;font-size:13px;font-weight:700}.ai-status.error{background:#fff1f2;color:#9f1239}.exam-results{display:grid;gap:14px}.exam-branch{border:1px solid var(--line);border-radius:15px;background:#fff;overflow:hidden}.exam-branch summary{cursor:pointer;list-style:none;padding:14px 16px;font-weight:900;background:#f8fafc;display:flex;justify-content:space-between;gap:12px}.exam-branch summary::-webkit-details-marker{display:none}.exam-branch summary:after{content:"▾"}.exam-branch[open] summary:after{content:"▴"}.exam-question-table select{min-width:95px;padding:8px}.exam-question-table input{min-width:120px;padding:8px}.confidence-low{color:#b91c1c;font-weight:900}.confidence-ok{color:#15803d;font-weight:900}.analysis-tag{display:inline-block;padding:5px 8px;border-radius:999px;font-size:11px;font-weight:900;white-space:nowrap}.analysis-tag.critical{background:#fef2f2;color:#b91c1c}.analysis-tag.unsure{background:#fffbeb;color:#b45309}.analysis-tag.gap{background:#f5f3ff;color:#6d28d9}.analysis-tag.strong{background:#f0fdf4;color:#15803d}.insight-list{display:grid;gap:10px}.insight-item{border-left:5px solid #cbd5e1;background:#f8fafc;border-radius:12px;padding:12px 14px}.insight-item b{display:block;margin-bottom:4px}.insight-item.critical{border-color:#dc2626;background:#fef2f2}.insight-item.unsure{border-color:#d97706;background:#fffbeb}.insight-item.gap{border-color:#7c3aed;background:#f5f3ff}.saved-exam{display:flex;justify-content:space-between;align-items:center;gap:12px;padding:11px 0;border-bottom:1px solid var(--line)}
+@media(max-width:720px){.exam-mode-grid{grid-template-columns:1fr}.exam-mode{padding:11px}.exam-mode.active{padding:10px}}
 @media(max-width:900px){
  .span-4,.span-5,.span-6,.span-7,.span-8,.span-12{grid-column:span 12}
  .conf-grid,.kpis{grid-template-columns:1fr 1fr}
@@ -74,7 +77,7 @@ table{width:100%;border-collapse:collapse;font-size:13px}th,td{padding:10px;bord
  .header-inner{align-items:flex-start;flex-direction:column}
  .branch-panels{grid-template-columns:1fr}
  .teacher-grid{grid-template-columns:repeat(2,1fr)}
- .self-topic-head{grid-template-columns:1fr}.self-topic-pct{text-align:left}
+ .self-topic-head,.self-ai-row{grid-template-columns:1fr}.self-topic-pct,.self-ai-score{text-align:left}
  .dashboard-filter{align-items:stretch;flex-direction:column}.dashboard-filter select{width:100%}
 }
 @media(max-width:520px){.conf-grid,.kpis,.teacher-grid{grid-template-columns:1fr}.barrow{grid-template-columns:90px 1fr 55px}}
@@ -84,8 +87,8 @@ table{width:100%;border-collapse:collapse;font-size:13px}th,td{padding:10px;bord
 <header>
   <div class="header-inner">
     <div>
-      <h1>YKS YOP Çalışma Paneli</h1>
-      <div class="subtitle">Yama • Onar • Pekiştir — sadece doğru/yanlış değil, ne kadar emin olduğun da ölçülür.</div>
+      <h1>YKS Bilgi ve Güven Paneli</h1>
+      <div class="subtitle">Kritik Hata • Kararsızlık • Bilgi Eksiği • Güçlü — sonuçla birlikte güven seviyeni de ölç.</div>
       <div class="save-note">● Kayıtlar, yarım kalan form ve açık sekme otomatik saklanır</div>
     </div>
     <div class="badge">TYT + AYT | Matematik • Geometri • Fizik • Kimya • Biyoloji</div>
@@ -96,7 +99,8 @@ table{width:100%;border-collapse:collapse;font-size:13px}th,td{padding:10px;bord
   <div class="tabs">
     <button class="tab active" data-tab="self">Kendimi Değerlendir</button>
     <button class="tab" data-tab="entry">Çalışma Kaydı</button>
-    <button class="tab" data-tab="dashboard">Analiz & Grafikler</button>
+    <button class="tab" data-tab="dashboard">Analiz</button>
+    <button class="tab" data-tab="examAnalysis">Deneme Analizi</button>
     <button class="tab" data-tab="teachers">Hocalarım</button>
     <button class="tab" data-tab="history">Geçmiş</button>
   </div>
@@ -184,10 +188,10 @@ table{width:100%;border-collapse:collapse;font-size:13px}th,td{padding:10px;bord
       </div>
 
       <div id="yopEngine" class="card span-4">
-        <h3>YOP Karar Motoru</h3>
-        <div class="rec yama"><b>YAMA</b><br>Soruya <b>3</b> verdin, yani “doğru yaptığıma eminim” dedin; fakat soru yanlış çıktı. Asıl gizli risk burada. En kritik çalışma alanın burası.</div>
-        <div class="rec onar"><b>ONAR</b><br>Soruya <b>2</b> verdin, yani iki şık arasında kaldın ve birini işaretledin. Sonuç doğru da yanlış da olsa burada bilgi/ayrım net değil; onarman gerekir.</div>
-        <div class="rec pek"><b>PEKİŞTİR</b><br>Soruya <b>1</b> verdin, yani emin değildin ama işaretledin. Sonuç doğru da yanlış da olsa konuyu pekiştirmen gerekir. Boşlar da aynı şekilde pekiştirme sinyalidir.</div>
+        <h3>Bilgi ve Güven Analizi</h3>
+        <div class="rec yama"><b>KRİTİK HATA</b><br>Soruya <b>3</b> verdin, yani “doğru yaptığıma eminim” dedin; fakat soru yanlış çıktı. En öncelikli çalışma alanın burası.</div>
+        <div class="rec onar"><b>KARARSIZLIK</b><br>Soruya <b>2</b> verdin, yani iki şık arasında kaldın. Sonuç doğru da yanlış da olsa kavram ayrımını netleştirmen gerekir.</div>
+        <div class="rec pek"><b>BİLGİ EKSİĞİ</b><br>Soruya <b>1</b> verdin veya soruyu boş bıraktın. Konuyu yeniden öğrenmen ve temel sorularla çalışman gerekir.</div>
         <div class="rec"><b>GÜÇLÜ</b><br>Soruya <b>3</b> verdin ve gerçekten doğru çıktı. Burada bilgi ile güven birbiriyle uyumlu.</div>
       </div>
     </div>
@@ -198,7 +202,47 @@ table{width:100%;border-collapse:collapse;font-size:13px}th,td{padding:10px;bord
     <div class="kpis" id="kpis"></div>
     <div class="grid" style="margin-top:16px">
       <div class="card span-12"><h3 id="resultsChartTitle">Soru Sonuçları</h3><div class="muted">Toplam, doğru, yanlış ve boş adetleri.</div><div id="branchResults" class="scroll" style="margin-top:10px;max-height:none"></div></div>
-      <div class="card span-12"><h3 id="yopChartTitle">YOP Dağılımı</h3><div class="muted">Güçlü, Yama, Onar ve Pekiştir adetleri.</div><div id="branchYop" class="scroll" style="margin-top:10px;max-height:none"></div></div>
+      <div class="card span-12"><h3 id="yopChartTitle">Bilgi ve Güven Analizi</h3><div class="muted">Güçlü, Kritik Hata, Kararsızlık ve Bilgi Eksiği adetleri.</div><div id="branchYop" class="scroll" style="margin-top:10px;max-height:none"></div></div>
+      <div class="card span-12"><h3>Farkındalık Analizi</h3><div class="muted">Konu bazındaki kendi değerlendirmen ile kaydedilmiş denemelerden hesaplanan AI değerlendirmesini karşılaştırır.</div><div id="awarenessAnalysis" class="scroll" style="margin-top:10px;max-height:none"></div></div>
+    </div>
+  </section>
+
+  <section id="examAnalysis" class="section">
+    <div class="grid">
+      <div class="card span-5">
+        <h2>Yeni Deneme Analizi</h2>
+        <div class="muted">Denemeni sana en uygun yöntemle ekle.</div>
+        <div class="exam-mode-grid" id="examModeGrid">
+          <button class="exam-mode active" type="button" data-exam-mode="report"><b>Hazır analiz yükle</b><small>Okul veya yayın raporundaki branş, konu ve sonuçları AI doldurur.</small></button>
+          <button class="exam-mode" type="button" data-exam-mode="booklet"><b>Deneme yükle</b><small>AI branş ve konuyu çıkarır; doğru, yanlış veya boşu sen seçersin.</small></button>
+          <button class="exam-mode" type="button" data-exam-mode="manual"><b>Kendim gireceğim</b><small>Tüm branş ve konular hazır gelir; yalnızca soru, doğru, yanlış ve boş sayılarını girersin.</small></button>
+        </div>
+        <div class="form-grid" style="margin-top:15px">
+          <div class="f6"><label>Deneme adı</label><input id="examAnalysisName" placeholder="Örn. TYT Türkiye Geneli 1"></div>
+          <div class="f3"><label>Tarih</label><input id="examAnalysisDate" type="date"></div>
+          <div class="f3"><label>Tür</label><select id="examAnalysisType"><option>TYT</option><option>AYT</option></select></div>
+          <div class="f12 upload-box" id="examFileBox"><label id="examFileLabel">Hazır deneme analiz raporu *</label><input id="examFiles" type="file" accept="application/pdf,image/*" multiple><div class="footer-note" id="examFileHelp">PDF veya net fotoğraf yükle. AI rapordaki branş, konu ve doğru–yanlış–boş bilgilerini çıkarır. Toplam en fazla 3 MB.</div></div>
+        </div>
+        <div class="actions"><button class="btn btn-primary" id="analyzeExamBtn">Analiz Raporunu Oku</button><button class="btn btn-secondary" id="newExamResetBtn">Temizle</button></div>
+        <div id="examAiStatus" class="ai-status hidden"></div>
+        <div class="footer-note">AI eşleşmelerini kaydetmeden önce kontrol edebilirsin. Yüklenen dosyalar tarayıcıda saklanmaz.</div>
+      </div>
+      <div class="card span-7">
+        <h3>Kaydedilen Denemeler</h3>
+        <div id="savedExamList" class="muted" style="margin-top:10px"></div>
+      </div>
+      <div class="card span-12 hidden" id="examReviewCard">
+        <div style="display:flex;justify-content:space-between;gap:12px;align-items:center;flex-wrap:wrap"><div><h2 id="examReviewTitle" style="margin-bottom:4px">Soru Kontrolü</h2><div class="muted" id="examReviewHelp">Branş, konu, sonuç ve güven seviyesini kontrol et.</div></div><div class="actions" style="margin-top:0"><button class="btn btn-secondary" id="addExamQuestionBtn">Soru Ekle</button><button class="btn btn-secondary" id="saveExamBtn">Denemeyi Kaydet</button><button class="btn btn-primary" id="examPdfBtn">PDF Raporu</button></div></div>
+        <div id="examQuestionReview" class="exam-results" style="margin-top:16px"></div>
+      </div>
+      <div class="card span-12 hidden" id="examInsightCard">
+        <h2>Deneme Sonucu</h2>
+        <div id="examKpis" class="kpis" style="margin-top:14px"></div>
+        <div class="grid" style="margin-top:16px">
+          <div class="span-6"><h3>Branş ve Konu Sonuçları</h3><div id="examSummaryTable" class="scroll" style="max-height:none"></div></div>
+          <div class="span-6"><h3>Öncelikli Çalışma Planı</h3><div id="examInsights" class="insight-list"></div></div>
+        </div>
+      </div>
     </div>
   </section>
 
@@ -255,7 +299,7 @@ table{width:100%;border-collapse:collapse;font-size:13px}th,td{padding:10px;bord
         </div>
       </div>
       <div class="scroll" style="margin-top:14px"><table>
-        <thead><tr><th>Tarih</th><th>Tür</th><th>Sınav</th><th>Branş / Konu</th><th>Sonuç</th><th>3 D/Y</th><th>2 D/Y</th><th>1 D/Y</th><th>Boş</th><th>YOP</th><th></th></tr></thead>
+        <thead><tr><th>Tarih</th><th>Tür</th><th>Sınav</th><th>Branş / Konu</th><th>Sonuç</th><th>3 D/Y</th><th>2 D/Y</th><th>1 D/Y</th><th>Boş</th><th>Bilgi ve Güven</th><th></th></tr></thead>
         <tbody id="historyBody"></tbody>
       </table></div>
     </div>
@@ -284,6 +328,9 @@ const $=id=>document.getElementById(id);
 let data=JSON.parse(localStorage.getItem("yksYopData")||"[]");
 let selfData=JSON.parse(localStorage.getItem("yksYopSelf")||"{}");
 let workMode=localStorage.getItem("yksYopMode")||"question";
+let examAnalyses=JSON.parse(localStorage.getItem("yksExamAnalyses")||"[]");
+let activeExamAnalysis=null;
+let examEntryMode="report";
 function migratedGeometryTopic(exam,subject,topic){
  if(subject!=="Matematik")return null;
  if(exam==="TYT"&&topic.startsWith("Geometri: ")){
@@ -327,22 +374,49 @@ document.querySelectorAll(".tab").forEach(b=>b.onclick=()=>{
  b.classList.add("active"); $(b.dataset.tab).classList.add("active");
  localStorage.setItem("yksYopTab",b.dataset.tab);
  if(b.dataset.tab==="dashboard") renderDashboard();
+ if(b.dataset.tab==="examAnalysis") renderSavedExams();
  if(b.dataset.tab==="topics") renderTopicList();
  if(b.dataset.tab==="history") renderHistory();
 });
 
+function questionEvidenceScore(q){
+ if(q.manualAggregate)return q.result==="Doğru"?100:q.result==="Yanlış"||q.result==="Boş"?0:null;
+ if(q.result==="Boş")return 0;
+ if(q.result==="Doğru"&&q.confidence==="3")return 100;
+ if(q.result==="Doğru"&&q.confidence==="2")return 70;
+ if(q.result==="Doğru"&&q.confidence==="1")return 45;
+ if(q.result==="Yanlış"&&q.confidence==="3")return 0;
+ if(q.result==="Yanlış"&&q.confidence==="2")return 30;
+ if(q.result==="Yanlış"&&q.confidence==="1")return 15;
+ return null;
+}
+function aiTopicAssessment(exam,subject,topic){
+ const evidence=[];
+ examAnalyses.forEach(test=>(test.questions||[]).forEach(q=>{const score=questionEvidenceScore(q);if(test.exam===exam&&q.branch===subject&&q.topic===topic&&score!==null)evidence.push({score,testId:test.id,testName:test.name,number:q.number})}));
+ if(!evidence.length)return{score:null,questionCount:0,examCount:0,evidence:[]};
+ return{score:Math.round(evidence.reduce((s,x)=>s+x.score,0)/evidence.length),questionCount:evidence.length,examCount:new Set(evidence.map(x=>x.testId)).size,evidence};
+}
+function awarenessStatus(selfScore,ai){
+ if(ai.score===null||ai.questionCount<5||ai.examCount<2)return{name:"Yetersiz Kanıt",css:"",difference:null};
+ const difference=selfScore-ai.score,abs=Math.abs(difference);
+ if(abs<=10)return{name:"Gerçekçi Farkındalık",css:"aligned",difference};
+ if(abs<=20)return{name:"Hafif Uyumsuzluk",css:"mild",difference};
+ if(difference>20)return{name:"Fazla Güven",css:"over",difference};
+ return{name:"Düşük Güven",css:"under",difference};
+}
 function selfColor(v){return v<=40?"red":v<=70?"orange":"green"}
 function renderSelfTopics(){
  const ex=$("selfExam").value,sub=$("selfSubject").value,list=topics[ex][sub];
  $("selfTopicList").innerHTML=list.map((topic,i)=>{
-  const r=selfData[[ex,sub,topic].join("|")],score=r?.score??0;
+  const r=selfData[[ex,sub,topic].join("|")],score=r?.score??0,ai=aiTopicAssessment(ex,sub,topic),aw=awarenessStatus(score,ai),proof=ai.questionCount?`${ai.questionCount} soru · ${ai.examCount} deneme`:"Henüz deneme kanıtı yok";
   return `<div class="self-topic-row ${selfColor(score)}" data-index="${i}">
    <div class="self-topic-head"><div class="self-topic-name">${topic}</div><input class="self-topic-score" type="range" min="0" max="100" step="10" value="${score}" aria-label="${topic} değerlendirme yüzdesi"><div class="self-topic-pct">%<span>${score}</span></div></div>
+   <div class="self-ai-row"><div class="self-ai-label"><b>Denemelere göre AI</b><span>${proof}</span><br><span class="awareness-badge ${aw.css}">${aw.name}</span></div><div class="ai-meter" title="AI değerlendirmesi öğrenci tarafından değiştirilemez"><i style="width:${ai.score??0}%"></i></div><div class="self-ai-score">${ai.score===null?"—":"%"+ai.score}</div></div>
    <div class="self-topic-note"><label>Açıklama (opsiyonel)</label><input class="self-topic-description" value="${esc(r?.note||"")}" placeholder="Bu konudaki güçlü yönünü, eksiğini veya çalışma ihtiyacını yaz"></div>
   </div>`;
  }).join("");
  document.querySelectorAll(".self-topic-score").forEach(slider=>slider.oninput=()=>{
-  const row=slider.closest(".self-topic-row"),v=Number(slider.value);row.querySelector(".self-topic-pct span").textContent=v;row.classList.remove("red","orange","green");row.classList.add(selfColor(v));
+  const row=slider.closest(".self-topic-row"),v=Number(slider.value),topic=list[Number(row.dataset.index)],aw=awarenessStatus(v,aiTopicAssessment(ex,sub,topic)),badge=row.querySelector(".awareness-badge");row.querySelector(".self-topic-pct span").textContent=v;row.classList.remove("red","orange","green");row.classList.add(selfColor(v));badge.className="awareness-badge "+aw.css;badge.textContent=aw.name;
  });
 }
 $("saveSelfBtn").onclick=()=>{
@@ -351,20 +425,20 @@ $("saveSelfBtn").onclick=()=>{
   const topic=topics[ex][sub][Number(row.dataset.index)],k=[ex,sub,topic].join("|");
   selfData[k]={exam:ex,subject:sub,topic,score:Number(row.querySelector(".self-topic-score").value),note:row.querySelector(".self-topic-description").value.trim(),updated:now};
  });
- localStorage.setItem("yksYopSelf",JSON.stringify(selfData));alert(sub+" için tüm konu değerlendirmeleri kaydedildi.");
+ localStorage.setItem("yksYopSelf",JSON.stringify(selfData));renderDashboard();alert(sub+" için tüm konu değerlendirmeleri kaydedildi.");
 };
 function esc(v){return String(v??"").replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]))}
 function selfReportHtml(){
- const rows=Object.values(selfData).sort((a,b)=>a.exam.localeCompare(b.exam)||a.subject.localeCompare(b.subject,"tr")||a.topic.localeCompare(b.topic,"tr"));
- const red=rows.filter(x=>x.score<=40).length,orange=rows.filter(x=>x.score>=50&&x.score<=70).length,green=rows.filter(x=>x.score>=80).length;
+ const rows=Object.values(selfData).map(r=>{const ai=aiTopicAssessment(r.exam,r.subject,r.topic);return{...r,ai,aw:awarenessStatus(r.score,ai)}}).sort((a,b)=>a.exam.localeCompare(b.exam)||a.subject.localeCompare(b.subject,"tr")||a.topic.localeCompare(b.topic,"tr"));
+ const aligned=rows.filter(x=>x.aw.name==="Gerçekçi Farkındalık").length,over=rows.filter(x=>x.aw.name==="Fazla Güven").length,under=rows.filter(x=>x.aw.name==="Düşük Güven").length;
  const subjects=["Matematik","Geometri","Fizik","Kimya","Biyoloji"];
- const subjectRows=subjects.map(s=>{const a=rows.filter(x=>x.subject===s),avg=a.length?Math.round(a.reduce((t,x)=>t+x.score,0)/a.length):0;return `<div class="subject"><div><b>${s}</b><span>${a.length} konu · ortalama %${avg}</span></div><div class="track"><i style="width:${avg}%;background:${avg<=40?"#dc2626":avg<=70?"#d97706":"#16a34a"}"></i></div></div>`}).join("");
- const detail=rows.map(r=>`<tr><td>${esc(r.exam)}</td><td>${esc(r.subject)}</td><td>${esc(r.topic)}</td><td><b>%${r.score}</b></td><td>${r.score<=40?"Kritik / Eksik":r.score<=70?"Gelişen / Onarılmalı":"Güçlü"}</td><td>${esc(r.note||"—")}</td></tr>`).join("");
+ const subjectRows=subjects.map(s=>{const a=rows.filter(x=>x.subject===s),avg=a.length?Math.round(a.reduce((t,x)=>t+x.score,0)/a.length):0,withAi=a.filter(x=>x.ai.score!==null),aiAvg=withAi.length?Math.round(withAi.reduce((t,x)=>t+x.ai.score,0)/withAi.length):null;return `<div class="subject"><div><b>${s}</b><span>${a.length} konu · benim ortalamam %${avg} · AI ${aiAvg===null?"—":"%"+aiAvg}</span></div><div class="track"><i style="width:${avg}%;background:#2563eb"></i></div></div>`}).join("");
+ const detail=rows.map(r=>`<tr><td>${esc(r.exam)}</td><td>${esc(r.subject)}</td><td>${esc(r.topic)}</td><td><b>%${r.score}</b></td><td><b>${r.ai.score===null?"—":"%"+r.ai.score}</b></td><td>${r.aw.difference===null?"—":(r.aw.difference>0?"+":"")+r.aw.difference}</td><td>${r.ai.questionCount} soru / ${r.ai.examCount} deneme</td><td>${r.aw.name}</td><td>${esc(r.note||"—")}</td></tr>`).join("");
  return `<!doctype html><html lang="tr"><head><meta charset="utf-8"><title>YKS Öz Değerlendirme Raporu</title><style>
  @page{size:A4;margin:14mm}*{box-sizing:border-box}body{font-family:Arial,sans-serif;color:#18212f;margin:0;font-size:11px}h1{font-size:23px;margin:0}h2{font-size:15px;margin:22px 0 10px}.top{border-bottom:3px solid #2563eb;padding-bottom:12px;display:flex;justify-content:space-between;align-items:end}.date{color:#64748b}.cards{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin-top:16px}.card{border:1px solid #e5e7eb;border-radius:10px;padding:10px}.card b{display:block;font-size:21px;margin-bottom:3px}.red{background:#fef2f2;color:#991b1b}.orange{background:#fffbeb;color:#92400e}.green{background:#f0fdf4;color:#166534}.subject{display:grid;grid-template-columns:180px 1fr;gap:12px;align-items:center;margin:8px 0}.subject span{display:block;color:#64748b;margin-top:2px}.track{height:12px;background:#eef2f7;border-radius:99px;overflow:hidden}.track i{display:block;height:100%;border-radius:99px}table{width:100%;border-collapse:collapse;font-size:9px}th{background:#111827;color:#fff;text-align:left;padding:7px}td{padding:7px;border-bottom:1px solid #e5e7eb;vertical-align:top}tr{break-inside:avoid}.foot{margin-top:14px;color:#64748b;font-size:9px}@media print{.no-print{display:none}}
  </style></head><body><div class="top"><div><h1>YKS Konu Öz Değerlendirme Raporu</h1><div>Konu hâkimiyeti ve gelişim alanları</div></div><div class="date">${new Date().toLocaleDateString("tr-TR")}</div></div>
- <div class="cards"><div class="card"><b>${rows.length}</b>Değerlendirilen konu</div><div class="card red"><b>${red}</b>Kırmızı · %0–40</div><div class="card orange"><b>${orange}</b>Turuncu · %50–70</div><div class="card green"><b>${green}</b>Yeşil · %80–100</div></div>
- <h2>Branş Bazlı Görünüm</h2>${subjectRows}<h2>Konu Detayı</h2><table><thead><tr><th>Sınav</th><th>Branş</th><th>Konu</th><th>Seviye</th><th>Durum</th><th>Not</th></tr></thead><tbody>${detail}</tbody></table><div class="foot">Bu rapor, konu bazında girilen kişisel öz değerlendirme yüzdelerinden oluşturulmuştur.</div>
+ <div class="cards"><div class="card"><b>${rows.length}</b>Değerlendirilen konu</div><div class="card green"><b>${aligned}</b>Gerçekçi farkındalık</div><div class="card red"><b>${over}</b>Fazla güven</div><div class="card orange"><b>${under}</b>Düşük güven</div></div>
+ <h2>Branş Bazlı Görünüm</h2>${subjectRows}<h2>Konu Bazlı Farkındalık Analizi</h2><table><thead><tr><th>Sınav</th><th>Branş</th><th>Konu</th><th>Benim</th><th>AI</th><th>Fark</th><th>Kanıt</th><th>Farkındalık</th><th>Not</th></tr></thead><tbody>${detail}</tbody></table><div class="foot">Kişisel değerlendirme kullanıcı tarafından girilir. AI değerlendirmesi yalnızca kaydedilmiş denemelerdeki doğru, yanlış, boş ve 3–2–1 güven verilerinden hesaplanır; kullanıcı tarafından değiştirilemez.</div>
  <script>window.onload=()=>setTimeout(()=>window.print(),300)<\/script></body></html>`;
 }
 $("selfPdfBtn").onclick=()=>{if(!Object.keys(selfData).length){alert("PDF raporu oluşturmak için önce en az bir konu değerlendirmesi kaydetmelisin.");return}const w=window.open("","_blank");if(!w){alert("PDF penceresi açılamadı. Tarayıcında açılır pencereye izin ver.");return}w.document.open();w.document.write(selfReportHtml());w.document.close();};
@@ -428,7 +502,12 @@ function resultTable(rows){
 }
 function yopTable(rows){
  if(!rows.some(x=>x.total))return '<div class="chart-empty">Bu kapsamda henüz soru kaydı yok.</div>';
- return `<table><thead><tr><th>Kapsam</th><th>Güçlü</th><th>Yama</th><th>Onar</th><th>Pekiştir</th></tr></thead><tbody>${rows.map((x,i)=>`<tr${i===0?' style="font-weight:900;background:#f8fafc"':''}><td>${esc(x.label)}</td><td class="risk-low">${x.strong}</td><td class="risk-high">${x.patch}</td><td class="risk-med">${x.repair}</td><td style="color:#6d28d9;font-weight:900">${x.reinforce}</td></tr>`).join("")}</tbody></table>`;
+ return `<table><thead><tr><th>Kapsam</th><th>Güçlü</th><th>Kritik Hata</th><th>Kararsızlık</th><th>Bilgi Eksiği</th></tr></thead><tbody>${rows.map((x,i)=>`<tr${i===0?' style="font-weight:900;background:#f8fafc"':''}><td>${esc(x.label)}</td><td class="risk-low">${x.strong}</td><td class="risk-high">${x.patch}</td><td class="risk-med">${x.repair}</td><td style="color:#6d28d9;font-weight:900">${x.reinforce}</td></tr>`).join("")}</tbody></table>`;
+}
+function renderAwarenessAnalysis(selected="Genel"){
+ const rows=Object.values(selfData).filter(r=>selected==="Genel"||r.subject===selected).map(r=>{const ai=aiTopicAssessment(r.exam,r.subject,r.topic),aw=awarenessStatus(r.score,ai);return{...r,ai,aw}}).sort((a,b)=>a.exam.localeCompare(b.exam)||a.subject.localeCompare(b.subject,"tr")||a.topic.localeCompare(b.topic,"tr"));
+ if(!rows.length){$("awarenessAnalysis").innerHTML='<div class="empty">Karşılaştırma için önce konu bazlı öz değerlendirme kaydetmelisin.</div>';return}
+ $("awarenessAnalysis").innerHTML=`<table><thead><tr><th>Sınav</th><th>Branş</th><th>Konu</th><th>Benim</th><th>AI</th><th>Fark</th><th>Kanıt</th><th>Farkındalık</th><th>Dayanak Sorular</th></tr></thead><tbody>${rows.map(r=>{const refs=r.ai.evidence.slice(0,8).map(x=>`${esc(x.testName)} / ${x.number}`).join(", ")||"—";return `<tr><td>${r.exam}</td><td><b>${esc(r.subject)}</b></td><td>${esc(r.topic)}</td><td><b>%${r.score}</b></td><td style="color:#6d28d9;font-weight:900">${r.ai.score===null?"—":"%"+r.ai.score}</td><td>${r.aw.difference===null?"—":(r.aw.difference>0?"+":"")+r.aw.difference}</td><td>${r.ai.questionCount} soru<br><span class="muted">${r.ai.examCount} deneme</span></td><td><span class="awareness-badge ${r.aw.css}">${r.aw.name}</span></td><td class="muted">${refs}</td></tr>`}).join("")}</tbody></table>`;
 }
 function renderDashboard(){
  const selected=$("dashboardSubject")?.value||"Genel",questionData=data.filter(r=>r.type!=="review"&&(selected==="Genel"||r.subject===selected));
@@ -440,9 +519,10 @@ function renderDashboard(){
   <div class="kpi pek"><small>Boş</small><div class="v">${a.blank}</div><small>Boş bırakılan soru</small></div>`;
  const rows=analysisRows(dashboardGroups(data.filter(r=>r.type!=="review"),selected));
  $("resultsChartTitle").textContent=selected==="Genel"?"Genel ve Branş Bazlı Soru Sonuçları":selected+" · Konu Bazlı Soru Sonuçları";
- $("yopChartTitle").textContent=selected==="Genel"?"Genel ve Branş Bazlı YOP Dağılımı":selected+" · Konu Bazlı YOP Dağılımı";
+ $("yopChartTitle").textContent=selected==="Genel"?"Genel ve Branş Bazlı Bilgi ve Güven Analizi":selected+" · Konu Bazlı Bilgi ve Güven Analizi";
  $("branchResults").innerHTML=resultTable(rows);
  $("branchYop").innerHTML=yopTable(rows);
+ renderAwarenessAnalysis(selected);
 }
 $("dashboardSubject").onchange=renderDashboard;
 
@@ -450,9 +530,120 @@ function analysisPdfHtml(){
  const selected=$("dashboardSubject").value||"Genel",records=data.filter(r=>r.type!=="review"),rows=analysisRows(dashboardGroups(records,selected));
  const resultRows=rows.map((x,i)=>`<tr class="${i===0?'total':''}"><td>${esc(x.label)}</td><td>${x.total}</td><td class="green">${x.correct}</td><td class="red">${x.wrong}</td><td>${x.blank}</td><td>%${pct(x.correct,x.total)}</td></tr>`).join("");
  const yopRows=rows.map((x,i)=>`<tr class="${i===0?'total':''}"><td>${esc(x.label)}</td><td class="green">${x.strong}</td><td class="red">${x.patch}</td><td class="orange">${x.repair}</td><td class="purple">${x.reinforce}</td></tr>`).join("");
- return `<!doctype html><html><head><meta charset="utf-8"><title>YKS YOP Analiz Raporu</title><style>@page{size:A4;margin:14mm}*{box-sizing:border-box}body{font-family:Arial,sans-serif;color:#18212f;font-size:11px;margin:0}h1{font-size:22px;margin:0}h2{font-size:15px;margin:22px 0 8px}.head{border-bottom:3px solid #dc0005;padding-bottom:12px;display:flex;justify-content:space-between;align-items:end}.muted{color:#64748b}.cards{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin-top:15px}.card{border:1px solid #e5e7eb;border-radius:9px;padding:10px}.card b{display:block;font-size:21px;margin-bottom:3px}table{width:100%;border-collapse:collapse}th{background:#111827;color:#fff;text-align:left;padding:8px}td{padding:8px;border-bottom:1px solid #e5e7eb}.total{font-weight:bold;background:#f1f5f9}.green{color:#15803d;font-weight:bold}.red{color:#b91c1c;font-weight:bold}.orange{color:#b45309;font-weight:bold}.purple{color:#6d28d9;font-weight:bold}.foot{margin-top:16px;color:#64748b;font-size:9px}</style></head><body><div class="head"><div><h1>YKS YOP Analiz Raporu</h1><div class="muted">Kapsam: ${esc(selected)}</div></div><div>${new Date().toLocaleDateString('tr-TR')}</div></div><div class="cards"><div class="card"><b>${rows[0]?.total||0}</b>Çözülen soru</div><div class="card"><b class="green">${rows[0]?.correct||0}</b>Doğru</div><div class="card"><b class="red">${rows[0]?.wrong||0}</b>Yanlış</div><div class="card"><b>${rows[0]?.blank||0}</b>Boş</div></div><h2>Soru Sonuçları</h2><table><thead><tr><th>Kapsam</th><th>Toplam</th><th>Doğru</th><th>Yanlış</th><th>Boş</th><th>Başarı</th></tr></thead><tbody>${resultRows}</tbody></table><h2>YOP Dağılımı</h2><table><thead><tr><th>Kapsam</th><th>Güçlü</th><th>Yama</th><th>Onar</th><th>Pekiştir</th></tr></thead><tbody>${yopRows}</tbody></table><div class="foot">Rapor, soru çözümü kayıtlarından ve 3–2–1 güven seviyelerinden oluşturulmuştur.</div></body></html>`;
+ const awarenessRows=Object.values(selfData).filter(r=>selected==="Genel"||r.subject===selected).map(r=>{const ai=aiTopicAssessment(r.exam,r.subject,r.topic),status=awarenessStatus(Number(r.score)||0,ai),diff=ai.score===null?null:(Number(r.score)||0)-ai.score;return `<tr><td>${esc(r.exam)}</td><td>${esc(r.subject)}</td><td>${esc(r.topic)}</td><td>%${Number(r.score)||0}</td><td>${ai.score===null?'—':'%'+ai.score}</td><td>${diff===null?'—':(diff>0?'+':'')+diff}</td><td>${ai.questionCount} soru / ${ai.examCount} deneme</td><td>${esc(status.label)}</td></tr>`}).join("");
+ return `<!doctype html><html><head><meta charset="utf-8"><title>YKS Bilgi ve Güven Analiz Raporu</title><style>@page{size:A4;margin:14mm}*{box-sizing:border-box}body{font-family:Arial,sans-serif;color:#18212f;font-size:11px;margin:0}h1{font-size:22px;margin:0}h2{font-size:15px;margin:22px 0 8px}.head{border-bottom:3px solid #dc0005;padding-bottom:12px;display:flex;justify-content:space-between;align-items:end}.muted{color:#64748b}.cards{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin-top:15px}.card{border:1px solid #e5e7eb;border-radius:9px;padding:10px}.card b{display:block;font-size:21px;margin-bottom:3px}table{width:100%;border-collapse:collapse}th{background:#111827;color:#fff;text-align:left;padding:8px}td{padding:8px;border-bottom:1px solid #e5e7eb}.total{font-weight:bold;background:#f1f5f9}.green{color:#15803d;font-weight:bold}.red{color:#b91c1c;font-weight:bold}.orange{color:#b45309;font-weight:bold}.purple{color:#6d28d9;font-weight:bold}.foot{margin-top:16px;color:#64748b;font-size:9px}</style></head><body><div class="head"><div><h1>YKS Bilgi ve Güven Analiz Raporu</h1><div class="muted">Kapsam: ${esc(selected)}</div></div><div>${new Date().toLocaleDateString('tr-TR')}</div></div><div class="cards"><div class="card"><b>${rows[0]?.total||0}</b>Çözülen soru</div><div class="card"><b class="green">${rows[0]?.correct||0}</b>Doğru</div><div class="card"><b class="red">${rows[0]?.wrong||0}</b>Yanlış</div><div class="card"><b>${rows[0]?.blank||0}</b>Boş</div></div><h2>Soru Sonuçları</h2><table><thead><tr><th>Kapsam</th><th>Toplam</th><th>Doğru</th><th>Yanlış</th><th>Boş</th><th>Başarı</th></tr></thead><tbody>${resultRows}</tbody></table><h2>Bilgi ve Güven Analizi</h2><table><thead><tr><th>Kapsam</th><th>Güçlü</th><th>Kritik Hata</th><th>Kararsızlık</th><th>Bilgi Eksiği</th></tr></thead><tbody>${yopRows}</tbody></table><h2>Farkındalık Analizi</h2><table><thead><tr><th>Sınav</th><th>Branş</th><th>Konu</th><th>Benim</th><th>AI</th><th>Fark</th><th>Kanıt</th><th>Farkındalık</th></tr></thead><tbody>${awarenessRows||'<tr><td colspan="8">Bu kapsamda öz değerlendirme kaydı bulunmuyor.</td></tr>'}</tbody></table><div class="foot">AI puanı yalnızca kaydedilmiş deneme sorularındaki sonuç ve 3–2–1 güven verilerinden oluşur. Güvenilir karşılaştırma için en az 5 soru ve 2 deneme gerekir.</div></body></html>`;
 }
 $("exportAnalysisPdf").onclick=()=>{const w=window.open("","_blank");if(!w){alert("PDF penceresi açılamadı. Tarayıcında açılır pencereye izin ver.");return}w.document.open();w.document.write(analysisPdfHtml());w.document.close();setTimeout(()=>w.print(),300)};
+
+const examExtraTopics={
+ TYT:{
+  "Türkçe":["Sözcükte Anlam","Cümlede Anlam","Paragraf","Ses Bilgisi","Yazım Kuralları","Noktalama İşaretleri","Sözcük Türleri","Fiiller","Cümlenin Ögeleri","Cümle Türleri","Anlatım Bozukluğu"],
+  "Tarih":["Tarih Bilimi","İlk Uygarlıklar","İslamiyet Öncesi Türk Tarihi","İslam Tarihi","Türk-İslam Devletleri","Osmanlı Tarihi","Kurtuluş Savaşı","Atatürk İlke ve İnkılapları"],
+  "Coğrafya":["Doğa ve İnsan","Harita Bilgisi","İklim","Yer Şekilleri","Nüfus ve Yerleşme","Ekonomik Faaliyetler","Bölgeler","Çevre ve Toplum"],
+  "Felsefe":["Felsefenin Konusu","Bilgi Felsefesi","Varlık Felsefesi","Ahlak Felsefesi","Sanat Felsefesi","Din Felsefesi","Siyaset Felsefesi","Bilim Felsefesi"],
+  "Din Kültürü":["Bilgi ve İnanç","Din ve İslam","İslam ve İbadet","Ahlak ve Değerler","Allah-İnsan İlişkisi","Hz. Muhammed","Vahiy ve Akıl"]
+ },
+ AYT:{
+  "Türk Dili ve Edebiyatı":["Anlam Bilgisi","Şiir Bilgisi","Edebi Sanatlar","İslamiyet Öncesi Türk Edebiyatı","Halk Edebiyatı","Divan Edebiyatı","Tanzimat Edebiyatı","Servetifünun ve Fecriati","Milli Edebiyat","Cumhuriyet Dönemi Edebiyatı","Edebi Akımlar"],
+  "Tarih":["İlk Çağ Uygarlıkları","Türklerin İlk Dönemleri","İslam Tarihi","Türk-İslam Devletleri","Osmanlı Tarihi","Avrupa Tarihi","Kurtuluş Savaşı","Atatürk Dönemi","Çağdaş Türk ve Dünya Tarihi"],
+  "Coğrafya":["Doğal Sistemler","Beşeri Sistemler","Ekonomik Faaliyetler","Türkiye Coğrafyası","Küresel Ortam","Çevre ve Toplum"]
+ }
+};
+function examBranches(exam){return exam==="TYT"?["Türkçe","Matematik","Geometri","Fizik","Kimya","Biyoloji","Tarih","Coğrafya","Felsefe","Din Kültürü"]:["Matematik","Geometri","Fizik","Kimya","Biyoloji","Türk Dili ve Edebiyatı","Tarih","Coğrafya"]}
+function examTopicOptions(exam,branch){return topics[exam]?.[branch]||examExtraTopics[exam]?.[branch]||["Diğer / Onay Bekliyor"]}
+function setExamStatus(text,error=false){const el=$("examAiStatus");el.textContent=text;el.className="ai-status"+(error?" error":"")}
+function hideExamStatus(){$("examAiStatus").className="ai-status hidden"}
+function readFileData(file){return new Promise((resolve,reject)=>{const r=new FileReader();r.onload=()=>resolve({name:file.name,type:file.type||"application/octet-stream",data:r.result});r.onerror=reject;r.readAsDataURL(file)})}
+async function selectedExamFiles(){
+ const files=[...$("examFiles").files];if(!files.length)throw new Error(examEntryMode==="report"?"Hazır analiz raporunu yüklemelisin.":"Deneme PDF'ini veya fotoğraflarını yüklemelisin.");
+ const total=files.reduce((s,x)=>s+x.size,0);if(total>3*1024*1024)throw new Error("Dosyaların toplamı 3 MB'ı geçiyor. PDF'yi sıkıştır veya sayfaları daha küçük görseller olarak yükle.");
+ return Promise.all(files.map(async file=>({...await readFileData(file),role:examEntryMode})));
+}
+function normalizeExamQuestion(q,i,exam){
+ const branch=examBranches(exam).includes(q.branch)?q.branch:examBranches(exam)[0],allowed=examTopicOptions(exam,branch),topic=allowed.includes(q.topic)?q.topic:(q.topic||allowed[0]);
+ return {number:Number(q.number)||i+1,branch,topic,subtopic:q.subtopic||"",skill:q.skill||"",correctAnswer:q.correctAnswer||"",studentAnswer:q.studentAnswer||"",result:["Doğru","Yanlış","Boş"].includes(q.result)?q.result:"Belirsiz",confidence:"",aiConfidence:Math.max(0,Math.min(100,Number(q.aiConfidence)||0)),evidence:q.evidence||""};
+}
+async function analyzeExam(){
+ try{
+  const name=$("examAnalysisName").value.trim()||"İsimsiz Deneme",exam=$("examAnalysisType").value,date=$("examAnalysisDate").value||new Date().toISOString().slice(0,10);
+  if(examEntryMode==="manual"){activeExamAnalysis={id:Date.now(),name,date,exam,entryMode:"manual",manualRows:buildManualRows(exam),questions:[],createdAt:new Date().toISOString()};renderExamReview();renderExamResult();hideExamStatus();return}
+  const files=await selectedExamFiles();setExamStatus(examEntryMode==="report"?"Analiz raporundaki sonuçlar okunuyor…":"Sorular branş ve konularına ayrılıyor…");$("analyzeExamBtn").disabled=true;
+  const response=await fetch("/api/analyze-exam",{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({name,exam,mode:examEntryMode,files})});
+  const body=await response.json().catch(()=>({}));if(!response.ok)throw new Error(body.error||"AI analizi tamamlanamadı.");
+  const questions=(body.questions||[]).map((q,i)=>normalizeExamQuestion(q,i,exam)).sort((a,b)=>a.number-b.number);if(!questions.length)throw new Error("Dosyada soru tespit edilemedi. Daha net veya eksiksiz bir dosya yüklemeyi dene.");
+  activeExamAnalysis={id:Date.now(),name,date,exam,entryMode:examEntryMode,questions,createdAt:new Date().toISOString()};
+  setExamStatus(examEntryMode==="report"?`${questions.length} soru/sonuç okundu. Kaydetmeden önce kontrol et.`:`${questions.length} soru sınıflandırıldı. Doğru, yanlış veya boş sonucunu sen tamamla.`);renderExamReview();renderExamResult();
+ }catch(e){setExamStatus(e.message||"Beklenmeyen bir hata oluştu.",true)}finally{$("analyzeExamBtn").disabled=false}
+}
+function analysisClass(q){
+ if(q.result==="Doğru"&&q.confidence==="3")return "Güçlü";
+ if(q.result==="Yanlış"&&q.confidence==="3")return "Kritik Hata";
+ if(q.result==="Boş")return "Bilgi Eksiği";
+ if(q.confidence==="2")return "Kararsızlık";
+ if(q.confidence==="1")return "Bilgi Eksiği";
+ return "Değerlendirilmedi";
+}
+function classCss(c){return c==="Kritik Hata"?"critical":c==="Kararsızlık"?"unsure":c==="Bilgi Eksiği"?"gap":c==="Güçlü"?"strong":""}
+function setExamEntryMode(mode,preserveActive=false){
+ const changed=examEntryMode!==mode;examEntryMode=mode;if(changed&&!preserveActive){activeExamAnalysis=null;$("examReviewCard").classList.add("hidden");$("examInsightCard").classList.add("hidden");$("examQuestionReview").innerHTML="";$("examFiles").value=""}
+ document.querySelectorAll("[data-exam-mode]").forEach(b=>b.classList.toggle("active",b.dataset.examMode===mode));
+ const manual=mode==="manual";$("examFileBox").classList.toggle("hidden",manual);
+ $("addExamQuestionBtn").classList.toggle("hidden",manual);
+ $("examFileLabel").textContent=mode==="report"?"Hazır deneme analiz raporu *":"Deneme PDF'i veya fotoğrafları *";
+ $("examFileHelp").textContent=mode==="report"?"AI rapordaki branş, konu ve doğru–yanlış–boş bilgilerini çıkarır. Toplam en fazla 3 MB.":"AI yalnızca soruların branş ve konularını çıkarır. Sonuçları sen seçersin. Toplam en fazla 3 MB.";
+ $("analyzeExamBtn").textContent=mode==="report"?"Analiz Raporunu Oku":mode==="booklet"?"Denemeyi Konulara Ayır":"Konu Tablosunu Aç";hideExamStatus();
+}
+function buildManualRows(exam){return examBranches(exam).flatMap(branch=>examTopicOptions(exam,branch).map(topic=>({branch,topic,total:0,correct:0,wrong:0,blank:0})))}
+function manualRowsFromQuestions(a){const rows=buildManualRows(a.exam),map=new Map(rows.map((r,i)=>[r.branch+"|"+r.topic,i]));(a.questions||[]).forEach(q=>{const i=map.get(q.branch+"|"+q.topic);if(i===undefined)return;const r=rows[i];r.total++;if(q.result==="Doğru")r.correct++;else if(q.result==="Yanlış")r.wrong++;else if(q.result==="Boş")r.blank++});return rows}
+function syncManualQuestions(){let n=1;activeExamAnalysis.questions=[];(activeExamAnalysis.manualRows||[]).forEach(r=>{[["Doğru",r.correct],["Yanlış",r.wrong],["Boş",r.blank]].forEach(([result,count])=>{for(let i=0;i<(Number(count)||0);i++)activeExamAnalysis.questions.push({number:n++,branch:r.branch,topic:r.topic,subtopic:"",skill:"",correctAnswer:"",studentAnswer:"",result,confidence:"",aiConfidence:0,evidence:"Konu bazlı manuel giriş",manualAggregate:true})})})}
+window.updateManualExamRow=(i,key,value)=>{const r=activeExamAnalysis.manualRows[i];r[key]=Math.max(0,Number(value)||0);syncManualQuestions();const sum=r.correct+r.wrong+r.blank,badge=$(`manualRowStatus${i}`);if(badge){badge.textContent=r.total===sum?"Tamam":`${sum}/${r.total}`;badge.className=r.total===sum?"risk-low":"risk-high"}renderExamResult()};
+function renderManualExamReview(){
+ if(!activeExamAnalysis.manualRows)activeExamAnalysis.manualRows=manualRowsFromQuestions(activeExamAnalysis);syncManualQuestions();const grouped={};activeExamAnalysis.manualRows.forEach((r,i)=>{(grouped[r.branch]??=[]).push({r,i})});
+ return Object.entries(grouped).map(([branch,items])=>`<details class="exam-branch"><summary><span>${esc(branch)}</span><span>${items.reduce((s,x)=>s+(Number(x.r.total)||0),0)} soru</span></summary><div class="scroll" style="max-height:none"><table class="exam-question-table"><thead><tr><th>Konu</th><th>Soru Sayısı</th><th>Doğru</th><th>Yanlış</th><th>Boş</th><th>Kontrol</th></tr></thead><tbody>${items.map(({r,i})=>{const sum=r.correct+r.wrong+r.blank,ok=r.total===sum;return `<tr><td><b>${esc(r.topic)}</b></td>${["total","correct","wrong","blank"].map(k=>`<td><input type="number" min="0" value="${r[k]}" onchange="updateManualExamRow(${i},'${k}',this.value)" style="min-width:68px;width:78px"></td>`).join("")}<td id="manualRowStatus${i}" class="${ok?'risk-low':'risk-high'}">${ok?'Tamam':sum+'/'+r.total}</td></tr>`}).join("")}</tbody></table></div></details>`).join("");
+}
+function addExamQuestion(){
+ if(!activeExamAnalysis||activeExamAnalysis.entryMode==="manual")return;const branch=examBranches(activeExamAnalysis.exam)[0],number=activeExamAnalysis.questions.length?Math.max(...activeExamAnalysis.questions.map(q=>Number(q.number)||0))+1:1;
+ activeExamAnalysis.questions.push({number,branch,topic:examTopicOptions(activeExamAnalysis.exam,branch)[0],subtopic:"",skill:"",correctAnswer:"",studentAnswer:"",result:"Belirsiz",confidence:"",aiConfidence:0,evidence:"Kullanıcı tarafından eklendi"});renderExamReview();renderExamResult();
+}
+function renderExamReview(){
+ if(!activeExamAnalysis)return;$("examReviewCard").classList.remove("hidden");
+ const manualMode=activeExamAnalysis.entryMode==="manual";$("examReviewTitle").textContent=manualMode?"Konu Bazlı Sonuç Girişi":"Soru Kontrolü";$("examReviewHelp").textContent=manualMode?"Soru çıkan konulara toplam, doğru, yanlış ve boş adetlerini gir. Çıkmayan konuları 0 bırak.":"Branş, konu, sonuç ve güven seviyesini kontrol et.";
+ if(manualMode){$("examQuestionReview").innerHTML=renderManualExamReview();return}
+ const grouped={};activeExamAnalysis.questions.forEach((q,i)=>{(grouped[q.branch]??=[]).push({q,i})});
+ $("examQuestionReview").innerHTML=Object.entries(grouped).map(([branch,items])=>`<details class="exam-branch" open><summary><span>${esc(branch)}</span><span>${items.length} soru</span></summary><div class="scroll" style="max-height:none"><table class="exam-question-table"><thead><tr><th>Soru</th><th>Branş</th><th>Konu / Alt konu</th><th>AI Güveni</th><th>Sonuç</th><th>Güven</th><th>Analiz</th><th></th></tr></thead><tbody>${items.map(({q,i})=>{const c=analysisClass(q),topicList=examTopicOptions(activeExamAnalysis.exam,q.branch),manual=q.aiConfidence===0;return `<tr><td><input type="number" min="1" value="${q.number}" onchange="updateExamQuestion(${i},'number',this.value)" style="min-width:65px;width:70px"></td><td><select onchange="updateExamQuestion(${i},'branch',this.value)">${examBranches(activeExamAnalysis.exam).map(x=>`<option${x===q.branch?' selected':''}>${esc(x)}</option>`).join("")}</select></td><td><select onchange="updateExamQuestion(${i},'topic',this.value)">${[...new Set([q.topic,...topicList])].map(t=>`<option${t===q.topic?' selected':''}>${esc(t)}</option>`).join("")}</select><input value="${esc(q.subtopic)}" placeholder="Alt konu (isteğe bağlı)" onchange="updateExamQuestion(${i},'subtopic',this.value)" style="margin-top:6px"><div class="muted" style="margin-top:5px">${esc(q.skill||q.evidence||"")}</div></td><td class="${manual?'muted':q.aiConfidence<80?'confidence-low':'confidence-ok'}">${manual?'—':'%'+q.aiConfidence+(q.aiConfidence<80?'<br><small>Onayla</small>':'')}</td><td><select onchange="updateExamQuestion(${i},'result',this.value)">${["Belirsiz","Doğru","Yanlış","Boş"].map(x=>`<option${x===q.result?' selected':''}>${x}</option>`).join("")}</select></td><td><select onchange="updateExamQuestion(${i},'confidence',this.value)"><option value="">Seç</option><option value="3"${q.confidence==='3'?' selected':''}>3 · Eminim</option><option value="2"${q.confidence==='2'?' selected':''}>2 · İki şık</option><option value="1"${q.confidence==='1'?' selected':''}>1 · Emin değilim</option></select></td><td><span class="analysis-tag ${classCss(c)}">${c}</span></td><td><button class="btn btn-danger" style="padding:7px 9px" onclick="removeExamQuestion(${i})">Sil</button></td></tr>`}).join("")}</tbody></table></div></details>`).join("");
+}
+window.updateExamQuestion=(i,key,value)=>{
+ const q=activeExamAnalysis.questions[i];q[key]=value;
+ if(key==="branch"){q.topic=examTopicOptions(activeExamAnalysis.exam,value)[0];q.aiConfidence=0;q.evidence="Kullanıcı tarafından düzenlendi"}
+ renderExamReview();renderExamResult();
+};
+window.removeExamQuestion=i=>{activeExamAnalysis.questions.splice(i,1);renderExamReview();renderExamResult()};
+function examStats(questions){return questions.reduce((a,q)=>{a.total++;if(q.result==="Doğru")a.correct++;else if(q.result==="Yanlış")a.wrong++;else if(q.result==="Boş")a.blank++;const c=analysisClass(q);if(c==="Kritik Hata")a.critical++;if(c==="Kararsızlık")a.unsure++;if(c==="Bilgi Eksiği")a.gap++;if(c==="Güçlü")a.strong++;return a},{total:0,correct:0,wrong:0,blank:0,critical:0,unsure:0,gap:0,strong:0})}
+function renderManualExamResult(){
+ $("examInsightCard").classList.remove("hidden");const s=examStats(activeExamAnalysis.questions),net=(s.correct-s.wrong/4).toFixed(2).replace(".",",");
+ $("examKpis").innerHTML=`<div class="kpi"><small>Toplam</small><div class="v">${s.total}</div></div><div class="kpi good"><small>Doğru</small><div class="v">${s.correct}</div></div><div class="kpi yama"><small>Yanlış</small><div class="v">${s.wrong}</div></div><div class="kpi"><small>Boş</small><div class="v">${s.blank}</div></div><div class="kpi"><small>Net</small><div class="v">${net}</div></div>`;
+ const rows=(activeExamAnalysis.manualRows||[]).filter(r=>r.total>0);$("examSummaryTable").innerHTML=rows.length?`<table><thead><tr><th>Branş</th><th>Konu</th><th>Toplam</th><th>D</th><th>Y</th><th>B</th><th>Başarı</th></tr></thead><tbody>${rows.map(r=>`<tr><td><b>${esc(r.branch)}</b></td><td>${esc(r.topic)}</td><td>${r.total}</td><td class="risk-low">${r.correct}</td><td class="risk-high">${r.wrong}</td><td>${r.blank}</td><td>%${pct(r.correct,r.total)}</td></tr>`).join("")}</tbody></table>`:`<div class="empty">Soru sayısı girdiğin konular burada görünecek.</div>`;
+ const priorities=rows.filter(r=>r.wrong+r.blank>0).sort((a,b)=>(b.wrong+b.blank)-(a.wrong+a.blank));$("examInsights").innerHTML=priorities.length?priorities.map(r=>`<div class="insight-item ${r.wrong?'critical':'gap'}"><b>${esc(r.branch)} / ${esc(r.topic)}</b><div>${r.wrong} yanlış · ${r.blank} boş · %${pct(r.correct,r.total)} başarı</div></div>`).join(""):`<div class="empty">Yanlış veya boş bulunan konular burada önceliklendirilecek.</div>`;
+}
+function renderExamResult(){
+ if(!activeExamAnalysis)return;if(activeExamAnalysis.entryMode==="manual"){renderManualExamResult();return}$("examInsightCard").classList.remove("hidden");const s=examStats(activeExamAnalysis.questions),net=(s.correct-s.wrong/4).toFixed(2).replace(".",",");
+ $("examKpis").innerHTML=`<div class="kpi"><small>Toplam</small><div class="v">${s.total}</div></div><div class="kpi good"><small>Doğru</small><div class="v">${s.correct}</div></div><div class="kpi yama"><small>Yanlış</small><div class="v">${s.wrong}</div></div><div class="kpi"><small>Net</small><div class="v">${net}</div></div><div class="kpi yama"><small>Kritik Hata</small><div class="v">${s.critical}</div></div><div class="kpi onar"><small>Kararsızlık</small><div class="v">${s.unsure}</div></div><div class="kpi pek"><small>Bilgi Eksiği</small><div class="v">${s.gap}</div></div><div class="kpi good"><small>Güçlü</small><div class="v">${s.strong}</div></div>`;
+ const groups={};activeExamAnalysis.questions.forEach(q=>{const key=q.branch+"|"+q.topic;(groups[key]??=[]).push(q)});
+ $("examSummaryTable").innerHTML=`<table><thead><tr><th>Branş</th><th>Konu</th><th>Soru</th><th>D</th><th>Y</th><th>B</th><th>Kritik</th><th>Kararsız</th><th>Eksik</th></tr></thead><tbody>${Object.entries(groups).map(([key,qs])=>{const [branch,topic]=key.split("|"),x=examStats(qs);return `<tr><td><b>${esc(branch)}</b></td><td>${esc(topic)}</td><td>${qs.map(q=>q.number).join(", ")}</td><td class="risk-low">${x.correct}</td><td class="risk-high">${x.wrong}</td><td>${x.blank}</td><td>${x.critical}</td><td>${x.unsure}</td><td>${x.gap}</td></tr>`}).join("")}</tbody></table>`;
+ const priority=[{name:"Kritik Hata",css:"critical",action:"Çözüm yaklaşımını yeniden kontrol et ve benzer 10 ayırt edici soru çöz."},{name:"Kararsızlık",css:"unsure",action:"Karıştırılan kavramları karşılaştır ve 12 seçici soru çöz."},{name:"Bilgi Eksiği",css:"gap",action:"Konu anlatımını tekrar et ve 20 temel soru çöz."}],insights=[];
+ priority.forEach(p=>Object.entries(groups).forEach(([key,qs])=>{const hit=qs.filter(q=>analysisClass(q)===p.name);if(hit.length){const [branch,topic]=key.split("|");insights.push({p,branch,topic,nums:hit.map(q=>q.number)})}}));
+ $("examInsights").innerHTML=insights.length?insights.map(x=>`<div class="insight-item ${x.p.css}"><b>${x.p.name} · ${esc(x.branch)} / ${esc(x.topic)}</b><div>Sorular: ${x.nums.join(", ")}</div><div style="margin-top:5px">${x.p.action}</div></div>`).join(""):`<div class="empty">Sonuç ve güven seviyeleri tamamlandığında çalışma planı burada oluşacak.</div>`;
+}
+function saveExamAnalysis(){if(!activeExamAnalysis)return;if(activeExamAnalysis.entryMode==="manual"){const used=(activeExamAnalysis.manualRows||[]).filter(r=>r.total>0),invalid=used.filter(r=>r.total!==r.correct+r.wrong+r.blank);if(!used.length){alert("En az bir konu için soru sayısı girmelisin.");return}if(invalid.length){alert("Soru sayısı ile doğru + yanlış + boş toplamı eşit olmayan konular var.");return}syncManualQuestions()}else{const missing=activeExamAnalysis.questions.filter(q=>q.result==="Belirsiz"||(!q.confidence&&q.result!=="Boş")).length;if(missing&&!confirm(`${missing} sorunun sonuç veya güven bilgisi eksik. Yine de kaydedilsin mi?`))return}const i=examAnalyses.findIndex(x=>x.id===activeExamAnalysis.id);if(i>=0)examAnalyses[i]=activeExamAnalysis;else examAnalyses.unshift(activeExamAnalysis);localStorage.setItem("yksExamAnalyses",JSON.stringify(examAnalyses));renderSavedExams();renderSelfTopics();renderDashboard();alert("Deneme analizi kaydedildi. AI öz değerlendirme puanları güncellendi.")}
+function renderSavedExams(){$("savedExamList").innerHTML=examAnalyses.length?examAnalyses.map(x=>{const s=examStats(x.questions||[]);return `<div class="saved-exam"><div><b>${esc(x.name)}</b><div class="muted">${x.date} · ${x.exam} · ${s.total} soru · ${s.correct} doğru · ${s.wrong} yanlış</div></div><div class="actions" style="margin:0"><button class="btn btn-secondary" style="padding:8px 10px" onclick="openSavedExam(${x.id})">Aç</button><button class="btn btn-danger" style="padding:8px 10px" onclick="deleteSavedExam(${x.id})">Sil</button></div></div>`}).join(""):'Henüz kaydedilmiş deneme yok.'}
+window.openSavedExam=id=>{const found=examAnalyses.find(x=>x.id===id);if(!found)return;activeExamAnalysis=JSON.parse(JSON.stringify(found));$("examAnalysisName").value=found.name;$("examAnalysisDate").value=found.date;$("examAnalysisType").value=found.exam;setExamEntryMode(found.entryMode||"manual",true);renderExamReview();renderExamResult();window.scrollTo({top:$("examReviewCard").offsetTop-20,behavior:"smooth"})};
+window.deleteSavedExam=id=>{if(!confirm("Bu deneme analizini silmek istiyor musun?"))return;examAnalyses=examAnalyses.filter(x=>x.id!==id);localStorage.setItem("yksExamAnalyses",JSON.stringify(examAnalyses));renderSavedExams();renderSelfTopics();renderDashboard()};
+function resetExamAnalysis(){activeExamAnalysis=null;["examAnalysisName","examFiles"].forEach(id=>$(id).value="");$("examAnalysisDate").value=new Date().toISOString().slice(0,10);$("examReviewCard").classList.add("hidden");$("examInsightCard").classList.add("hidden");setExamEntryMode("report");hideExamStatus()}
+function examPdfHtml(){
+ const a=activeExamAnalysis,s=examStats(a.questions),groups={};a.questions.forEach(q=>{const k=q.branch+"|"+q.topic;(groups[k]??=[]).push(q)});const detail=Object.entries(groups).map(([k,qs])=>{const [b,t]=k.split("|"),x=examStats(qs);return `<tr><td>${esc(b)}</td><td>${esc(t)}</td><td>${a.entryMode==="manual"?qs.length:qs.map(q=>q.number).join(", ")}</td><td>${x.correct}</td><td>${x.wrong}</td><td>${x.blank}</td><td>${x.critical}</td><td>${x.unsure}</td><td>${x.gap}</td></tr>`}).join("");const priorities=a.entryMode==="manual"?(a.manualRows||[]).filter(r=>r.total>0&&r.wrong+r.blank>0).map(r=>`<tr><td>—</td><td>${esc(r.branch)}</td><td>${esc(r.topic)}</td><td>${r.wrong} yanlış · ${r.blank} boş</td></tr>`).join(""):a.questions.filter(q=>analysisClass(q)!=="Güçlü"&&analysisClass(q)!=="Değerlendirilmedi").map(q=>`<tr><td>${q.number}</td><td>${esc(q.branch)}</td><td>${esc(q.topic)}</td><td>${analysisClass(q)}</td></tr>`).join("");return `<!doctype html><html><head><meta charset="utf-8"><title>${esc(a.name)}</title><style>@page{size:A4;margin:13mm}body{font-family:Arial;color:#18212f;font-size:10px}h1{margin:0;font-size:21px}h2{font-size:14px;margin:20px 0 7px}.head{border-bottom:3px solid #dc0005;padding-bottom:10px}.cards{display:grid;grid-template-columns:repeat(4,1fr);gap:7px;margin-top:12px}.card{border:1px solid #ddd;border-radius:8px;padding:8px}.card b{display:block;font-size:18px}table{width:100%;border-collapse:collapse}th{background:#111827;color:#fff;padding:6px;text-align:left}td{padding:6px;border-bottom:1px solid #ddd}.muted{color:#64748b}</style></head><body><div class="head"><h1>${esc(a.name)}</h1><div class="muted">${a.exam} · ${a.date} · Bilgi ve Güven Analizi</div></div><div class="cards"><div class="card"><b>${s.total}</b>Toplam</div><div class="card"><b>${s.correct}</b>Doğru</div><div class="card"><b>${s.wrong}</b>Yanlış</div><div class="card"><b>${s.blank}</b>Boş</div><div class="card"><b>${s.critical}</b>Kritik Hata</div><div class="card"><b>${s.unsure}</b>Kararsızlık</div><div class="card"><b>${s.gap}</b>Bilgi Eksiği</div><div class="card"><b>${s.strong}</b>Güçlü</div></div><h2>Branş ve Konu Sonuçları</h2><table><thead><tr><th>Branş</th><th>Konu</th><th>${a.entryMode==="manual"?'Toplam':'Sorular'}</th><th>D</th><th>Y</th><th>B</th><th>Kritik</th><th>Kararsız</th><th>Eksik</th></tr></thead><tbody>${detail}</tbody></table><h2>Öncelikli Konular</h2><table><thead><tr><th>Soru</th><th>Branş</th><th>Konu</th><th>Tespit</th></tr></thead><tbody>${priorities||'<tr><td colspan="4">Henüz sınıflandırma yok.</td></tr>'}</tbody></table></body></html>`}
+function printExamPdf(){if(!activeExamAnalysis)return;const w=window.open("","_blank");if(!w){alert("PDF penceresi açılamadı. Tarayıcında açılır pencereye izin ver.");return}w.document.open();w.document.write(examPdfHtml());w.document.close();setTimeout(()=>w.print(),300)}
+document.querySelectorAll("[data-exam-mode]").forEach(b=>b.onclick=()=>setExamEntryMode(b.dataset.examMode));
+$("analyzeExamBtn").onclick=analyzeExam;$("newExamResetBtn").onclick=resetExamAnalysis;$("addExamQuestionBtn").onclick=addExamQuestion;$("saveExamBtn").onclick=saveExamAnalysis;$("examPdfBtn").onclick=printExamPdf;
 
 function lastStatus(ex,sub,topic){
  const arr=data.filter(r=>r.exam===ex&&r.subject===sub&&r.topic===topic).sort((a,b)=>b.id-a.id);
@@ -464,7 +655,7 @@ function renderTopicList(){
 }
 function yopText(r){
  if(r.type==="review")return "—";
- const a=[]; if(r.c3y)a.push(`Y:${r.c3y}`); if(r.c2d+r.c2y)a.push(`O:${r.c2d+r.c2y}`); if(r.c1d+r.c1y+r.blank)a.push(`P:${r.c1d+r.c1y+r.blank}`);
+ const a=[]; if(r.c3y)a.push(`Kritik:${r.c3y}`); if(r.c2d+r.c2y)a.push(`Kararsız:${r.c2d+r.c2y}`); if(r.c1d+r.c1y+r.blank)a.push(`Eksik:${r.c1d+r.c1y+r.blank}`);
  return a.length?a.join(" / "):"Güçlü";
 }
 function renderHistory(){
@@ -476,12 +667,12 @@ function renderHistory(){
  </tr>`).join(""):`<tr><td colspan="11" class="empty">Henüz kayıt yok.</td></tr>`;
 }
 window.delRec=id=>{if(confirm("Bu kaydı silmek istiyor musun?")){data=data.filter(r=>r.id!==id);localStorage.setItem("yksYopData",JSON.stringify(data));renderHistory()}};
-$("clearBtn").onclick=()=>{if(confirm("Tüm kayıtlar ve öz değerlendirmeler kalıcı olarak silinecek. Emin misin?")){data=[];selfData={};localStorage.removeItem("yksYopData");localStorage.removeItem("yksYopSelf");renderHistory();renderDashboard()}};
+$("clearBtn").onclick=()=>{if(confirm("Tüm çalışma kayıtları, öz değerlendirmeler ve deneme analizleri kalıcı olarak silinecek. Emin misin?")){data=[];selfData={};examAnalyses=[];activeExamAnalysis=null;localStorage.removeItem("yksYopData");localStorage.removeItem("yksYopSelf");localStorage.removeItem("yksExamAnalyses");renderHistory();renderDashboard();renderSavedExams();resetExamAnalysis()}};
 
 function download(name,text,type){
  const a=document.createElement("a");a.href=URL.createObjectURL(new Blob([text],{type}));a.download=name;a.click();URL.revokeObjectURL(a.href);
 }
-$("jsonBtn").onclick=()=>download("yks-yop-yedek.json",JSON.stringify({data,selfData},null,2),"application/json");
+$("jsonBtn").onclick=()=>download("yks-bilgi-guven-yedek.json",JSON.stringify({data,selfData,examAnalyses},null,2),"application/json");
 $("csvBtn").onclick=()=>{
  const headers=["Tarih","Sinav","Brans","Konu","Toplam","3 Dogru","3 Yanlis","2 Dogru","2 Yanlis","1 Dogru","1 Yanlis","Bos","Durum","Not"];
  const lines=[headers,...data.map(r=>[r.date,r.exam,r.subject,r.topic,r.total,r.c3d,r.c3y,r.c2d,r.c2y,r.c1d,r.c1y,r.blank,r.status,r.note])];
@@ -491,7 +682,7 @@ $("csvBtn").onclick=()=>{
 
 function saveDraft(){const d={date:$("date").value,exam:$("exam").value,subject:$("subject").value,topic:$("topic").value,note:$("note").value,duration:$("duration").value};["total","c3d","c3y","c2d","c2y","c1d","c1y","blank"].forEach(k=>d[k]=$(k).value);localStorage.setItem("yksYopDraft",JSON.stringify(d))}
 function restoreDraft(){const d=JSON.parse(localStorage.getItem("yksYopDraft")||"null");if(!d)return;$("date").value=d.date||$("date").value;if(d.exam){$("exam").value=d.exam;updateSubjects("exam","subject","topic");$("subject").value=d.subject;updateTopics();$("topic").value=d.topic}["note","duration","total","c3d","c3y","c2d","c2y","c1d","c1y","blank"].forEach(k=>{if(d[k]!==undefined)$(k).value=d[k]})}
-setToday(); setupSelectors(); restoreDraft(); setMode(workMode); $("status").value="Soru Çözümü"; document.querySelectorAll("input,select").forEach(x=>x.addEventListener("input",saveDraft));validateSum(); renderDashboard(); renderTopicList(); renderHistory();renderSelfTopics();
+setToday(); setupSelectors(); restoreDraft(); setMode(workMode); $("status").value="Soru Çözümü"; $("examAnalysisDate").value=new Date().toISOString().slice(0,10); document.querySelectorAll("#entry input,#entry select").forEach(x=>x.addEventListener("input",saveDraft));validateSum(); renderDashboard(); renderTopicList(); renderHistory();renderSelfTopics();renderSavedExams();
 const savedTab=localStorage.getItem("yksYopTab");if(savedTab){document.querySelector(`.tab[data-tab="${savedTab}"]`)?.click()}
 </script>
 </body>
